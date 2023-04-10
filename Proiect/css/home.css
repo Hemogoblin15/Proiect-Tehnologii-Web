@@ -1,11 +1,3 @@
-* {
-  margin: 0;
-
-  padding: 0;
-
-  box-sizing: border-box;
-}
-
 body {
   font-family: cursive;
   margin-top: 100px;
@@ -303,4 +295,16 @@ li:nth-child(1) {
 }
 .text-negru {
   color: #000;
+}
+
+footer {
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  object-fit: cover;
+  max-width: 100%;
+  position: relative;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
