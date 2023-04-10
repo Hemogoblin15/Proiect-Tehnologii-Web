@@ -8,36 +8,41 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css" />
 
-    <title>Document</title>
+    <title>Manners Matter!</title>
   </head>
 
   <body>
     <nav class="navbar">
+      <!-- LOGO -->
 
       <div class="logo">
-        <a href="home2.html" style="color: white; text-decoration: none"
-          >Manners Matter!</a
-        >
+        <a href="Home.html" style="color: white; text-decoration: none">
+          <img src="imagini/logo-removebg-preview.png" />
+        </a>
       </div>
 
+      <!-- NAVIGATION MENU -->
 
       <ul class="nav-links">
+        <!-- USING CHECKBOX HACK -->
 
         <input type="checkbox" id="checkbox_toggle" />
 
         <label for="checkbox_toggle" class="hamburger">&#9776;</label>
 
+        <!-- NAVIGATION MENUS -->
 
         <div class="menu">
-          <li><a href="home2.html">Home</a></li>
+          <li><a href="Home.html">Home</a></li>
 
           <li><a href="/">Profile</a></li>
 
           <li class="learn">
             <a href="/">Learn</a>
 
+            <!-- DROPDOWN MENU -->
 
             <ul class="dropdown">
               <li><a href="/">Online Etiquette </a></li>
@@ -52,11 +57,43 @@
             </ul>
           </li>
 
-          <li><a href="/">About</a></li>
+          <li><a href="About.html">About</a></li>
 
-          <li><a href="home.html">Logout</a></li>
+          <li><a href="home.html">Log Out</a></li>
         </div>
       </ul>
     </nav>
+
+    <!--UPPER CONTAINER-->
+
+    <div class="upperContainer">
+      <div class="siteDescription">
+        <p style="font-size: 40px">
+          <b>Manners Matter!</b>
+        </p>
+        <p>
+          Our website provides support for learning and recommending norms and
+          rules of behavior (etiquette) on the internet.
+        </p>
+      </div>
+      <div class="etiquetteTeaching">
+        <img src="imagini/etiLearn.png" />
+      </div>
+    </div>
+    <div class="leaderboard">
+      <h2>Leaderboard</h2>
+      <ol>
+        <li>Player 1 - 100 points</li>
+        <li>Player 2 - 90 points</li>
+        <li>Player 3 - 80 points</li>
+        <li>Player 4 - 70 points</li>
+        <li>Player 5 - 60 points</li>
+        <li>Player 6 - 50 points</li>
+        <li>Player 7 - 40 points</li>
+        <li>Player 8 - 30 points</li>
+        <li>Player 9 - 20 points</li>
+        <li>Player 10 - 10 points</li>
+      </ol>
+    </div>
   </body>
 </html>
