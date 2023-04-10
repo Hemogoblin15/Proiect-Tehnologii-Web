@@ -44,21 +44,15 @@ li {
   text-decoration: none;
 }
 
-/* LOGO */
 
 .logo img {
   width: 50%;
-  /* height: 30%; */
   border-radius: 0%;
   object-fit: cover;
-  /* text-align: center; */
-  /* padding: 0px 0px; */
   max-width: 100%;
   margin-top: 3px;
   margin-left: 15px;
 }
-
-/* NAVBAR MENU */
 
 .menu {
   display: flex;
@@ -79,7 +73,6 @@ li {
   padding: 5px 14px;
 }
 
-/* DROPDOWN MENU */
 
 .learn {
   position: relative;
@@ -91,7 +84,6 @@ li {
   padding: 1em 0;
 
   position: absolute;
-  /*WITH RESPECT TO PARENT*/
 
   display: none;
 
@@ -119,15 +111,11 @@ li {
 .learn:hover .dropdown {
   display: block;
 }
-/*RESPONSIVE NAVBAR MENU STARTS*/
-
-/* CHECKBOX HACK */
 
 input[type="checkbox"] {
   display: none;
 }
 
-/*HAMBURGER MENU*/
 
 .hamburger {
   display: none;
@@ -137,7 +125,6 @@ input[type="checkbox"] {
   user-select: none;
 }
 
-/* APPLYING MEDIA QUERIES */
 
 @media (max-width: 768px) {
   .menu {
@@ -185,11 +172,11 @@ input[type="checkbox"] {
   justify-content: flex-start;
   height: 50%;
   align-items: flex-start;
-  /* margin-top: 5%; */
+  margin-top: 5%; 
   align-content: center;
-  /* margin: 1rem;
+  margin: 1rem;
   padding: 2rem 2rem;
-  gap: 10%; */
+  gap: 10%; 
 }
 
 @media (max-width: 600px) {
@@ -283,4 +270,7 @@ li:nth-child(1) {
   li {
     margin-bottom: 2px;
   }
+}
+.text-negru {
+  color:#000;
 }
