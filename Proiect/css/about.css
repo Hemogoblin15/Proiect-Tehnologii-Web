@@ -121,7 +121,6 @@ object-fit: cover;
 / text-align: center; /
 / padding: 0px 0px; */
   max-width: 100%;
-  display: absolute;
   margin-top: 3px;
   margin-left: 15px;
 }
