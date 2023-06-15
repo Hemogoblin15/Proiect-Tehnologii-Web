@@ -22,7 +22,7 @@ nav li {
 }
 
 nav a {
-  color: #0077c0;
+  color: #633bbc;
   display: inline-block;
   margin-right: 10px;
   text-decoration: none;
@@ -32,7 +32,7 @@ nav a {
 
 nav a:hover {
   color: #fff;
-  background-color: #0077c0;
+  background-color: #633bbc;
   padding: 5px;
   border-radius: 5px;
 }

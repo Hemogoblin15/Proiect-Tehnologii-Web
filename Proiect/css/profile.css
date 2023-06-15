@@ -68,7 +68,7 @@ nav a:hover {
 }
 
 .user-profile h2 {
-  margin: 0;
+  margin-top: 15;
   font-size: 32px;
   width: 30%;
 }
@@ -287,4 +287,22 @@ footer {
   position: relative;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1f8ff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 12px;
+
+  cursor: pointer;
+}
+
+#uploaded-image {
+  display: none;
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 20px;
 }
