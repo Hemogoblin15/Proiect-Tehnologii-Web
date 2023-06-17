@@ -1,0 +1,112 @@
+body {
+  font-family: cursive;
+  margin-top: 100px;
+  background-color: #633bbc;
+  background: black;
+  background-repeat: no-repeat;
+}
+
+.learn {
+  position: relative;
+}
+
+.siteDescription {
+  max-height: 50%;
+  display: inline-block;
+  padding: 1rem 1rem;
+  justify-content: left;
+  max-width: 40%;
+  text-align: center;
+  margin-left: 3%;
+  font-size: 25px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.etiquetteTeaching {
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  max-width: 550px;
+  /* margin-right: 5%; */
+
+  border-color: white;
+  background-color: yellow;
+  /* padding: 1rem 1rem; */
+  margin-left: 15%;
+  vertical-align: center;
+  margin-top: 2%;
+}
+
+.leaderboard {
+  border: 2px solid #ccc;
+  border-radius: 35px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  max-width: 20%;
+  height: auto;
+  text-align: left;
+  margin-right: 10px;
+}
+p {
+  margin-top: 15%;
+  text-align: center;
+  display: inline-block;
+  color: white;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+li:nth-child(1) {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+  .leaderboard {
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+  }
+
+  li {
+    margin-bottom: 3px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .leaderboard {
+    font-size: 12px;
+  }
+
+  li {
+    margin-bottom: 2px;
+  }
+}
+.text-negru {
+  color: #000;
+}
+
+footer {
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  object-fit: cover;
+  max-width: 100%;
+  position: relative;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}

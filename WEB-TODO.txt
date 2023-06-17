@@ -1,0 +1,16 @@
+***LOGIN***
+user - ID(PK), username, email, hashPassword, passwordSalt, JWT
+
+***PROFILE***
+user_profile - ID(PK), userID(FK), img, bio
+
+***PROGRESS***
+progress - userID, lesson1, lesson2, ..., lesson6 (cu int si facem suma la toate la final pt leaderboard)
+
+INFO - thresholds pentru trecere de la o lectie la alta (lectiile anterioare adunate > cerinta)
+
+***
+	La profile adaugam si ocupatie (student, profesor, avocat, HR)
+
+TODO: 
+	recomandari in functie de ocupatie.
