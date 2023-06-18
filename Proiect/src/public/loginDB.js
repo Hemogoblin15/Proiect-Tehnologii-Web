@@ -28,7 +28,7 @@ function handleLoginRequest(req, res) {
       res.write(`
         <script>
           localStorage.setItem('token', '${token}');
-          alert("Te-ai logat cu succes");
+          alert("Login Successful!");
           window.location.href = "/home";
         </script>
       `);
@@ -37,7 +37,7 @@ function handleLoginRequest(req, res) {
       res.setHeader("Content-Type", "text/html");
       res.write(`
         <script>
-          alert("Ati introdus gresit email-ul sau parola !!!");
+          alert("Wrong email or password!");
           window.location.href = "/";
         </script>
       `);

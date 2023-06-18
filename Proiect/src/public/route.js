@@ -23,6 +23,13 @@ function handleRequest(req, res) {
     return;
   }
 
+  if ((requestUrl === "/" || requestUrl === "/register") && isLoggedIn(req)) {
+    res.statusCode = 302;
+    res.setHeader("Location", "/home");
+    res.end();
+    return;
+  }
+
   if (requestUrl === "/") {
     fsPath = path.resolve(appRootPath + "/src/html/login.html");
   } else if (requestUrl === "/home") {
