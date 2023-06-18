@@ -43,7 +43,7 @@ function handleRegisterRequest(req, res) {
 }
 
 async function findUserByEmail(email) {
-  const client = new MongoClient(mongoURL);
+  const client = new MongoClient(mongoURI);
   await client.connect();
 
   const db = client.db(dbName);
@@ -58,7 +58,7 @@ async function findUserByEmail(email) {
 
 async function insertUser(firstName, lastName, email, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const client = new MongoClient(mongoURL);
+  const client = new MongoClient(mongoURI);
   await client.connect();
 
   const db = client.db(dbName);
