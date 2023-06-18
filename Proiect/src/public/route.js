@@ -4,6 +4,7 @@ var appRootPath = require("app-root-path");
 var path = require("path");
 var RegisterRoute = require("./registerDB.js");
 var LoginRoute = require("./loginDB.js");
+var LogoutRoute = require("./logoutDB.js");
 var cookie = require("cookie");
 
 function handleRequest(req, res) {
@@ -62,13 +63,7 @@ function handleRequest(req, res) {
     RegisterRoute(req, res);
     return;
   } else if (requestUrl === "/logout") {
-    res.setHeader(
-      "Set-Cookie",
-      "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-    );
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
-    res.end();
+    LogoutRoute(req, res);
     return;
   }
 

@@ -14,7 +14,7 @@ function handleRegisterRequest(req, res) {
   });
 
   req.on("end", async () => {
-    const { firstName, lastName, email, password } = parseFormData(body);
+    const { firstName, lastName, country, ocupation, email, password } = parseFormData(body);
     const userByEmail = await findUserByEmail(email);
 
     if (userByEmail) {
@@ -28,7 +28,7 @@ function handleRegisterRequest(req, res) {
       `);
       res.end();
     } else {
-      await insertUser(firstName, lastName, email, password);
+      await insertUser(firstName, lastName, country, ocupation, email, password);
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
       res.write(`
@@ -56,7 +56,7 @@ async function findUserByEmail(email) {
   return user;
 }
 
-async function insertUser(firstName, lastName, email, password) {
+async function insertUser(firstName, lastName, country, ocupation, email, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const client = new MongoClient(mongoURI);
   await client.connect();
@@ -67,8 +67,11 @@ async function insertUser(firstName, lastName, email, password) {
   await collection.insertOne({
     firstName,
     lastName,
+    country,
+    ocupation,
     email,
     password: hashedPassword,
+    token: null,  
   });
 
   client.close();

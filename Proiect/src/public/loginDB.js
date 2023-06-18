@@ -11,6 +11,8 @@ function generateToken() {
   return uuidv4();
 }
 
+var token = null;
+
 function handleLoginRequest(req, res) {
   let body = "";
   req.on("data", (chunk) => {
@@ -22,7 +24,8 @@ function handleLoginRequest(req, res) {
     const user = await findUser(email);
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const token = generateToken();
+      token = generateToken();
+      await updateToken(user._id, token);
       res.setHeader("Set-Cookie", `token=${token}; Path=/;`);
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
@@ -61,6 +64,18 @@ async function findUser(email) {
   return user;
 }
 
+async function updateToken(userId, newToken) {
+  const client = new MongoClient(mongoURI);
+  await client.connect();
+
+  const db = client.db(dbName);
+  const collection = db.collection('users');
+
+  await collection.updateOne({ _id: userId }, { $set: { token: newToken } });
+
+  client.close();
+}
+
 function parseFormData(formData) {
   const data = {};
   const formFields = formData.split("&");
@@ -73,4 +88,4 @@ function parseFormData(formData) {
   return data;
 }
 
-module.exports = handleLoginRequest;
+module.exports = handleLoginRequest
