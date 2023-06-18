@@ -1,10 +1,11 @@
+require ('dotenv').config();
 var url = require("url");
 var fs = require("fs");
 const bcrypt = require("bcrypt");
 var MongoClient = require("mongodb").MongoClient;
 
-const mongoURL = "mongodb+srv://mihail:mama@cluster0.aip4z87.mongodb.net/";
-const dbName = "MaMa!";
+const mongoURI =process.env.DB_URI;
+const dbName = process.env.DB_NAME;
 
 function handleRegisterRequest(req, res) {
   let body = "";
@@ -42,7 +43,7 @@ function handleRegisterRequest(req, res) {
 }
 
 async function findUserByEmail(email) {
-  const client = new MongoClient(mongoURL);
+  const client = new MongoClient(mongoURI);
   await client.connect();
 
   const db = client.db(dbName);
@@ -57,7 +58,7 @@ async function findUserByEmail(email) {
 
 async function insertUser(firstName, lastName, email, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const client = new MongoClient(mongoURL);
+  const client = new MongoClient(mongoURI);
   await client.connect();
 
   const db = client.db(dbName);
