@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 var http = require("http");
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 var Routes = require("./src/public/route.js");
 

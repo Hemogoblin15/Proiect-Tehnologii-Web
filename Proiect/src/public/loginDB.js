@@ -1,10 +1,11 @@
+require ('dotenv').config();
 var url = require("url");
 var fs = require("fs");
 const { MongoClient } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
-const mongoURL = "mongodb+srv://mihail:mama@cluster0.aip4z87.mongodb.net/";
-const dbName = "MaMa!";
+const mongoURI =process.env.DB_URI;
+const dbName = process.env.DB_NAME;
 
 function generateToken() {
   return uuidv4();
@@ -47,7 +48,7 @@ function handleLoginRequest(req, res) {
 }
 
 async function findUser(email) {
-  const client = new MongoClient(mongoURL);
+  const client = new MongoClient(mongoURI);
   await client.connect();
 
   const db = client.db(dbName);

@@ -1,10 +1,11 @@
+require ('dotenv').config();
 var url = require("url");
 var fs = require("fs");
 const bcrypt = require("bcrypt");
 var MongoClient = require("mongodb").MongoClient;
 
-const mongoURL = "mongodb+srv://mihail:mama@cluster0.aip4z87.mongodb.net/";
-const dbName = "MaMa!";
+const mongoURI =process.env.DB_URI;
+const dbName = process.env.DB_NAME;
 
 function handleRegisterRequest(req, res) {
   let body = "";
