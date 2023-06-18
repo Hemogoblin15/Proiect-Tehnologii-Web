@@ -21,10 +21,6 @@ nav ul {
   justify-content: center;
 }
 
-nav li {
-  /* margin-right: 10px; */
-}
-
 nav a {
   color: black;
   display: inline-block;
@@ -51,7 +47,7 @@ li {
   left: 0;
   right: 0;
   z-index: 999;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   background-color: #633bbc;
@@ -65,7 +61,7 @@ li {
 .menu {
   display: flex;
   padding: 16px 0;
-  gap: 1rem;
+  gap: 1em;
   font-size: 18px;
 }
 
@@ -79,39 +75,6 @@ li {
 
 .menu li {
   padding: 5px 14px;
-}
-.dropdown {
-  background-color: #633bbc;
-
-  padding: 1em 0;
-
-  position: absolute;
-
-  display: none;
-
-  border-radius: 8px;
-
-  top: 35px;
-}
-
-.dropdown li + li {
-  margin-top: 10px;
-}
-
-.dropdown li {
-  padding: 0.5em 1em;
-
-  width: 8em;
-
-  text-align: center;
-}
-
-.dropdown li:hover {
-  background-color: #633bbc;
-}
-
-.learn:hover .dropdown {
-  display: block;
 }
 
 input[type="checkbox"] {
@@ -159,6 +122,7 @@ input[type="checkbox"] {
     left: 50%;
     top: 30px;
     transform: translateX(35%);
+    border: 3px black;
   }
 
   .dropdown li:hover {
@@ -166,22 +130,21 @@ input[type="checkbox"] {
   }
 }
 
-.upperContainer {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  height: 50%;
-  align-items: flex-start;
-  margin-top: 5%;
-  align-content: center;
-  margin: 1rem;
-  padding: 2rem 2rem;
-  /* gap: 10%;  */
-}
-
 @media (max-width: 600px) {
   .upperContainer {
     flex-direction: column;
     align-content: center;
   }
+}
+
+footer {
+  color: #fff;
+  padding: 10px;
+  bottom: 0;
+  text-align: center;
+  object-fit: cover;
+  max-width: 100%;
+  position: fixed;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }

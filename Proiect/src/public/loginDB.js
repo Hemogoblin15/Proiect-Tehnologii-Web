@@ -1,10 +1,10 @@
-require ('dotenv').config();
+require("dotenv").config();
 var url = require("url");
 var fs = require("fs");
 const { MongoClient } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
-const mongoURI =process.env.DB_URI;
+const mongoURI = process.env.DB_URI;
 const dbName = process.env.DB_NAME;
 
 function generateToken() {
