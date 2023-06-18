@@ -53,18 +53,6 @@ li {
   margin-bottom: 5px;
 }
 
-footer {
-  color: #fff;
-  padding: 10px;
-  margin-bottom: 0px;
-  text-align: center;
-  object-fit: cover;
-  max-width: 100%;
-  position: relative;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
 @media only screen and (max-width: 768px) {
   .container {
     max-width: 100%;

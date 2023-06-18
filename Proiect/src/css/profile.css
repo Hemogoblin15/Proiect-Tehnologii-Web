@@ -94,22 +94,6 @@ textarea {
   resize: none;
 }
 
-.learn {
-  position: relative;
-}
-
-footer {
-  color: #fff;
-  padding: 10px;
-  margin-bottom: 0px;
-  text-align: center;
-  object-fit: cover;
-  max-width: 100%;
-  position: relative;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
 .upload-btn {
   display: inline-block;
   padding: 10px 20px;

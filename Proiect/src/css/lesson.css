@@ -1,0 +1,50 @@
+body {
+  font-family: cursive;
+  margin-top: 100px;
+  background-color: #633bbc;
+  background: black;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.learn {
+  position: relative;
+}
+
+header {
+  margin-top: 10%;
+  color: white;
+  font-size: 50px;
+  border: 5px solid white;
+  border-radius: 10%;
+  width: 23%;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  text-align: center;
+}
+
+p {
+  margin-left: 0.5%;
+  font-size: 25px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../imagini/learn.jpg");
+  background-size: cover;
+  border-radius: 1%;
+  width: auto;
+  height: auto;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  text-align: center;
+}
+
+footer {
+  color: #fff;
+  padding: 10px;
+  bottom: 0;
+  text-align: center;
+  object-fit: cover;
+  max-width: 100%;
+  position: fixed;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}

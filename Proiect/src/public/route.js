@@ -42,6 +42,14 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/html/learn.html");
   } else if (requestUrl === "/profile") {
     fsPath = path.resolve(appRootPath + "/src/html/profile.html");
+  } else if (requestUrl === "/lesson1") {
+    fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson1.html");
+  } else if (requestUrl === "/lesson2") {
+    fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson2.html");
+  } else if (requestUrl === "/lesson3") {
+    fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson3.html");
+  } else if (requestUrl === "/lesson4") {
+    fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson4.html");
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
