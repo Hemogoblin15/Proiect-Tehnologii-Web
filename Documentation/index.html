@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+            user-scalable=yes" />
+    <title>Manners Matter</title>
+    <link rel="stylesheet" href="css/scholarly.min.css" />
+    <script src="js/scholarly.min.js"></script>
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <h1>Manners Matter</h1>
+    </header>
+
+    <div role="contentinfo">
+        <h2>Autori</h2>
+        <p>Ghidoarca Mihail &amp; Pletosu Razvan </p>
+    </div>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2>Abstract</h2>
+        <p>
+            MaMa (Manners Matter) este o aplicatie web de invatare a bunelor maniere pe internet care ofera utilizatorilor diverse lectii in functie de ocupatia lor. Utilizatorii au optiunea de a-si configura profilul cu datele lor.
+            Cu ajutorul acestora, platforma le va sugera lectii relevante profilului creat.
+        </p>
+    </section>
+    <section id="introduction" role="doc-introduction">
+        <h2>Introducere</h2>
+        <p>
+            Scopul acestei aplicatii web este de a oferi utilizatorilor, printr-o interfata user-friendly, o oportunitate de dezvoltare personala. In timpul crearii unui cont, utilizatorul isi poate configura profilul, adaugandu-si ocupatia si tara. Cu ajutorul optiunilor alese, platforma ii va sugera clientului cele mai potrivite lectii.
+            <br /> Prin intermediul platformei, utilizatorul poate sa citeasca lectii si sa dea teste in urma acestora.<br /> Dupa
+            ce un test a fost dat scorul va fi memorat si utilizatorul va aparea intr-un clasament global.
+        </p>
+    </section>
+    <section id="structure">
+        <!-- review? -->
+        <h2>Structura</h2>
+        <div>
+            Pentru a realiza interfata web si pentru a implementa functionalitatile aplicatiei folosim:<br />
+            <span> 3.1 </span> HTML
+            <p>
+                HyperText Markup Language (HTML) este un limbaj de marcare utilizat pentru crearea paginilor web ce pot fi afisate intr-un browser (sau navigator). Scopul HTML este mai degraba prezentarea informatiilor – paragrafe, fonturi, tabele s.a.m.d. – decat descrierea
+                semanticii documentului.
+            </p>
+            <span>3.2</span> CSS
+            <p>
+                CSS (Cascading Style Sheets) este un standard pentru formatarea elementelor unui document HTML. Stilurile se pot atasa elementelor HTML prin intermediul unor fisiere externe sau direct in cadrul documentului html.
+            </p>
+            <span>3.3</span> Javascript
+            <p>
+                JavaScript (JS) este un limbaj de programare orientat obiect bazat pe conceptul prototipurilor. Este folosit mai ales pentru introducerea unor functionalitati în paginile web, codul JavaScript din aceste pagini fiind rulat de catre browser.
+                <br/> Proiectul contine modulul "scripts", in care utilizam Fetch API's.
+            </p>
+            <span>3.4</span> NodeJS
+            <p>
+                Node.js este un mediu de execuție JavaScript de fundal multiplatformă cu sursă deschisă, care rulează pe motorul V8 și execută cod JavaScript în afara unui navigator web.
+                <br/> Pentru a putea fi rulat, trebuie instalate dependentele ("npm install") si pentru a porni serverul, se foloseste comanda "npm start".
+            </p>
+            <span>3.5</span> MongoDB
+            <p>
+                MongoDB este o bază de date NoSQL open-source orientată pe documente. Acestă bază de date beneficiază de suport din partea companiei 10gen. MongoDB face parte din familia de sistemelor de baze de date NoSQL. Baza de date MaMa contine colectia "users".
+            </p>
+            <span>3.6</span> Github
+            <p>
+                GitHub este un serviciu de gazduire web pentru proiecte de dezvoltare a software-ului care utilizeaza sistemul de control al versiunilor Git.
+            </p>
+        </div>
+    </section>
+    <section id="interfata">
+        <h2>Interfata Aplicatiei</h2>
+        <span> 4.1 </span> Index
+        <p>
+            Utilizatorul trebuie sa fie autentificat pentru a avea acces la functionalitatile site-ului.
+            Ulterior autentificarii, utilizatorul va avea acces la lectii personalizate, 
+            va avea optiunile de a se deconecta (Logout) – fiind redirectionat catre pagina de login sau de a trimite mailuri de ajutor (Help).
+            <br /> Pagina beneficiaza de un design responsive, navbar-ul fiind strans intr-un "hamburger"– vizibil doar prin apasarea butonului.
+        </p>
+        <span> 4.2 </span> Lessons
+        <p>
+            Aceasta pagina este destul de asemanatoare din punct de vedere al design-ului, fiind de asemenea responsive cu ajutorul proprietatilor grid-ului. <br />
+        </p>
+        <span>4.3</span> Register
+        <p>
+            Pe pagina de register, utilizatorul va trebui sa completeze cele 6 campuri (Firstname, LastName, Email, Country, Ocupation, Password) pentru a-si crea contul. Campurile trebuie neaparat completate, altfel va aparea o eroare care reaminteste utilizatorului ca acele
+            campuri nu trebuie omise. Odata ce toate campurile sunt completate, utilizatorul
+            va apasa pe butonul de Register unde va fi redirectionat pe pagina de Login.
+        </p>
+        <span>4.4</span> Login
+        <p>
+            Pe pagina de login, utilizatorul are posibilitatea de a se loga pe contul sau care a fost creat pe pagina de Register. Cele doua campuri (Email, Password), asemanator paginii de Register, trebuie sa fie completate, altfel clientul va fi atentionat
+            ca acele campuri nu trebuie lasate goale si butonul nu va functiona. Daca utilizatorul nu are un cont, atunci va apasa pe butonul de go to Register pentru a-si crea unul, altfel va apasa pe butonul de Login iar, daca informatiile din form
+            sunt corecte cu cele salvate din baza de date, atunci el va fi redirectionat pe pagina de Home.
+        </p>
+        <span>4.5</span> About
+        <p>
+            Pe pagina about este o scurta descriere a site-ului.
+        </p>
+
+        <span>4.6</span> Help
+        <p>
+            Pe pagina help, utilizatorul va completa un formular asemanator cu cele de login si register, cu campurile Email, Subject si Message, astfel apasand butonul de Send un mail va fi trimis catre emailul de ajutor (daca toate campurile au fost completate conform).
+        </p>
+
+
+    </section>
+
+    <section id="diagram">
+        <!-- review? -->
+        <h2>Diagrama</h2>
+        <div>
+            <img src="MaMa_diagram.png" alt="Diagrama" width="90%" height="60%" style="vertical-align:bottom">
+        </div>
+    </section>
+
+    <section id="biblio-references">
+        <h2>Referinte</h2>
+        <dl>
+            <dt id="ref-HTML">HTML</dt>
+            <dd property="schema:citation" typeof="schema:WebPage" resource="https://en.wikipedia.org/wiki/HTML">
+                <cite property="schema:name">
+                                <a href="https://en.wikipedia.org/wiki/HTML">HTML
+                                    Specifications</a>
+                            </cite>.
+            </dd>
+        </dl>
+        <dl>
+            <dt id="ref-CSS">CSS</dt>
+            <dd property="schema:citation" typeof="schema:WebPage" resource="https://en.wikipedia.org/wiki/CSS">
+                <cite property="schema:name">
+                                <a href="https://en.wikipedia.org/wiki/CSS">CSS
+                                    Specifications</a>
+                            </cite>.
+            </dd>
+        </dl>
+        <dl>
+            <dt id="ref-other">Other</dt>
+            <dd property="schema:citation" typeof="schema:WebPage" resource="https://www.w3schools.com/">
+                <cite property="schema:name">
+                                <a href="https://www.w3schools.com/">Other
+                                    Specifications</a>
+                            </cite>.
+            </dd>
+        </dl>
+    </section>
+</body>
+
+</html>
