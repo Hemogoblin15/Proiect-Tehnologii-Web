@@ -5,6 +5,7 @@ var path = require("path");
 var RegisterRoute = require("./registerDB.js");
 var LoginRoute = require("./loginDB.js");
 var LogoutRoute = require("./logoutDB.js");
+var HelpRoute = require("./helpDB.js");
 var cookie = require("cookie");
 
 function handleRequest(req, res) {
@@ -15,7 +16,8 @@ function handleRequest(req, res) {
     (requestUrl === "/home" ||
       requestUrl === "/about" ||
       requestUrl === "/learn" ||
-      requestUrl === "/profile") &&
+      requestUrl === "/profile" ||
+      requestUrl === "/help") &&
     !isLoggedIn(req)
   ) {
     res.statusCode = 302;
@@ -43,7 +45,9 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/html/learn.html");
   } else if (requestUrl === "/profile") {
     fsPath = path.resolve(appRootPath + "/src/html/profile.html");
-  } else if (requestUrl === "/lesson1") {
+  } else if (requestUrl === "/help") {
+    fsPath = path.resolve(appRootPath + "/src/html/help.html");
+  }else if (requestUrl === "/lesson1") {
     fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson1.html");
   } else if (requestUrl === "/lesson2") {
     fsPath = path.resolve(appRootPath + "/src/html/lessons/lesson2.html");
@@ -72,6 +76,9 @@ function handleRequest(req, res) {
     return;
   } else if (requestUrl === "/logout") {
     LogoutRoute(req, res);
+    return;
+  } else if (requestUrl === "/help" && req.method === "POST") {
+    HelpRoute(req, res);
     return;
   }
 
