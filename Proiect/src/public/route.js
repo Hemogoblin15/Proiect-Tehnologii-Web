@@ -60,6 +60,9 @@ function handleRequest(req, res) {
   } else if (path.extname(requestUrl) === ".jpg") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "image/jpeg");
+  } else if (path.extname(requestUrl) === ".js") {
+    fsPath = path.resolve(appRootPath + "/src" + requestUrl);
+    res.setHeader("Content-Type", "text/javascript");
   } else {
     fsPath = path.resolve(appRootPath + "/src/html/404.html");
   }
