@@ -16,7 +16,6 @@ function handleRequest(req, res) {
     (requestUrl === "/home" ||
       requestUrl === "/about" ||
       requestUrl === "/learn" ||
-      requestUrl === "/profile" ||
       requestUrl === "/help") &&
     !isLoggedIn(req)
   ) {
@@ -43,8 +42,6 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/html/about.html");
   } else if (requestUrl === "/learn") {
     fsPath = path.resolve(appRootPath + "/src/html/learn.html");
-  } else if (requestUrl === "/profile") {
-    fsPath = path.resolve(appRootPath + "/src/html/profile.html");
   } else if (requestUrl === "/help") {
     fsPath = path.resolve(appRootPath + "/src/html/help.html");
   }else if (requestUrl === "/lesson1") {
