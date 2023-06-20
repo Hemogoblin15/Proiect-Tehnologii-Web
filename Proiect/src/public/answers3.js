@@ -49,5 +49,12 @@ function calculateScore(answers, correctAnswers) {
 
 function displayResult(result) {
   console.log(result);
+  alert(
+    "Ai obtinut " +
+      result.score +
+      " din " +
+      result.totalQuestions +
+      " puncte la acest quiz!"
+  );
   // Display the result on the webpage or perform any other desired actions
 }
