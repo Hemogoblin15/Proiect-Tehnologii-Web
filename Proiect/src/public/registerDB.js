@@ -71,7 +71,8 @@ async function insertUser(firstName, lastName, country, ocupation, email, passwo
     ocupation,
     email,
     password: hashedPassword,
-    token: null,  
+    token: null,
+    admin: false,  
   });
 
   client.close();
