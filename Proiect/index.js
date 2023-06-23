@@ -1,13 +1,82 @@
+const http = require("http");
+const path = require("path");
+const mime = require("mime");
+const clientSessions = require("client-sessions");
+const fs = require("fs");
+const mongodbConnect = require('./database').mongodbConnect
 require("dotenv").config();
-
-var http = require("http");
-
 const PORT = process.env.PORT;
 
-var Routes = require("./src/public/route.js");
+const { requireAuthentication } = require("./middleware");
+const loginController = require("./controllers/loginController");
+// const homeController = require("./controllers/homeController");
+// const profileController = require("./controllers/profileController");
+const Utils = require("./utils");
 
-var server = http.createServer(Routes);
-
-server.listen(PORT, function () {
-  console.log("Server listening on: http://localhost:%s", PORT);
+const sessionMiddleware = clientSessions({
+  cookieName: "session",
+  secret: "secret",
+  duration: 24 * 60 * 60 * 1000, // 
+  activeDuration: 30 * 60 * 1000,
 });
+
+const server = http.createServer((req, res) => {
+  let { method, url } = req;
+  res.setHeader("Access-Control-Allow-Origin", `http://localhost:${PORT}`);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  sessionMiddleware(req, res, () => {
+    switch (true) {
+      case method === "POST" && url === "/login":
+        console.log("loginpost");
+        loginController.loginPost(req, res);
+        break;
+      case method === "GET" && url === "/login":
+        console.log("login");
+        loginController.loginGet(req, res);
+        break;
+      case method === "POST" && url === "/register":
+        loginController.registerPost(req, res);
+        break;
+      case method === "GET" && url === "/register":
+        loginController.registerGet(req, res);
+        break;
+      case method === "GET" && url === "/logout":
+        loginController.logout(req, res);
+        break;
+      case method === "GET" && url === "/":
+        Utils.redirectTo("/login", res);
+        break;
+    //   case method === "GET" && url === "/home":
+    //     console.log("home");
+    //     requireAuthentication(req, res, () => {
+    //       homeController.homeGet(req, res);
+    //     });
+    //     break;
+    //   case method === "GET" && url === "/profile":
+    //     console.log("profile");
+    //     requireAuthentication(req, res, async () => {
+    //       console.log("profile");
+    //       await profileController.profileGet(req, res);
+    //     });
+    //     break;
+      case method === "GET" || method === "HEAD":
+        Utils.sendResources(req, res, url);
+        break;
+      default:
+        res.statusCode = 404;
+        res.end("Not Found");
+        break;
+    }
+  });
+});
+
+server.on("request", (req, res) => {
+  sessionMiddleware(req, res, () => {
+    server.emit("sessionParsed", req, res);
+  });
+});
+
+mongodbConnect(async () => {
+    server.listen(PORT, () => console.log(`[server] Server running on port ${PORT}`))
+})
