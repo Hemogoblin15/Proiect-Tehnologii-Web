@@ -1,5 +1,3 @@
-const fs = require("fs");
-const db = require("../database");
 const jwt = require("jsonwebtoken");
 const Utils = require("../utils");
 const User = require("../models/userModel")
@@ -34,7 +32,7 @@ loginController.loginPost = (req, res) => {
               "Set-Cookie",
               `token=${token}; HttpOnly; Max-Age=${1 * 60 * 60 * 1000}`
             );
-            Utils.redirectTo("/register", res);
+            Utils.redirectTo("/home", res);
         } else {
             res.statusCode = 401;
             res.end("Invalid credentials");

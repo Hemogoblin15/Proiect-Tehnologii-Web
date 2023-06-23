@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 
 const { requireAuthentication } = require("./middleware");
 const loginController = require("./controllers/loginController");
-// const homeController = require("./controllers/homeController");
+const homeController = require("./controllers/homeController");
 // const profileController = require("./controllers/profileController");
 const Utils = require("./utils");
 
@@ -47,12 +47,12 @@ const server = http.createServer((req, res) => {
       case method === "GET" && url === "/":
         Utils.redirectTo("/login", res);
         break;
-    //   case method === "GET" && url === "/home":
-    //     console.log("home");
-    //     requireAuthentication(req, res, () => {
-    //       homeController.homeGet(req, res);
-    //     });
-    //     break;
+      case method === "GET" && url === "/home":
+        console.log("home");
+        requireAuthentication(req, res, () => {
+          homeController.homeGet(req, res);
+        });
+        break;
     //   case method === "GET" && url === "/profile":
     //     console.log("profile");
     //     requireAuthentication(req, res, async () => {

@@ -3,8 +3,7 @@ const getDb = require('../database').getDb
 
 class User {
     constructor(firstName, lastName, country, ocupation, email, password) {
-        this.firstName = firstName
-        this.lastName = lastName
+        this.name = firstName + " " + lastName
         this.country = country
         this.ocupation = ocupation
         this.email = email

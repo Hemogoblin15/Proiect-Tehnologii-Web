@@ -5,7 +5,6 @@ require("dotenv").config();
 function requireAuthentication(req, res, next) {
 
   const token = req.headers.cookie?.replace("token=", "") || "";
-  console.log(token);
 
   if (!token) {
     console.log("NO TOKEN");
