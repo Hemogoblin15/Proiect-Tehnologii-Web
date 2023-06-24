@@ -82,10 +82,10 @@ const server = http.createServer((req, res) => {
       //     learnController.learnPost(req, res);
       //   });
         break;
-      case method === "GET" && req.url.match(/^\/learn\/.+/):
+      case method === "GET" && url.startsWith("/learn/"):
         console.log("lesson1Get");
         requireAuthentication(req, res, () => {
-          learnController.learnGet(req, res);
+          learnController.lessonGet(req, res);
         });
         break;
       //   case method === "GET" && url === "/profile":
