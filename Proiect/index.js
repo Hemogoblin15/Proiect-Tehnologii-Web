@@ -3,7 +3,7 @@ const path = require("path");
 const mime = require("mime");
 const clientSessions = require("client-sessions");
 const fs = require("fs");
-const mongodbConnect = require('./database').mongodbConnect
+const mongodbConnect = require("./database").mongodbConnect;
 require("dotenv").config();
 const PORT = process.env.PORT;
 
@@ -11,13 +11,14 @@ const { requireAuthentication } = require("./middleware");
 const loginController = require("./controllers/loginController");
 const homeController = require("./controllers/homeController");
 const helpController = require("./controllers/helpController");
+const learnController = require("./controllers/learnController");
 // const profileController = require("./controllers/profileController");
 const Utils = require("./utils");
 
 const sessionMiddleware = clientSessions({
   cookieName: "session",
   secret: "secret",
-  duration: 24 * 60 * 60 * 1000, // 
+  duration: 24 * 60 * 60 * 1000, //
   activeDuration: 30 * 60 * 1000,
 });
 
@@ -53,25 +54,47 @@ const server = http.createServer((req, res) => {
           homeController.homeGet(req, res);
         });
         break;
-        case method === "POST" && url === "/help":
-          console.log("helpPost");
-          requireAuthentication(req, res, () => {
-            helpController.helpPost(req, res);
-          });
-          break;
-        case method === "GET" && url === "/help":
-          console.log("helpGet");
-          requireAuthentication(req, res, () => {
-            helpController.helpGet(req, res);
-          });
-          break;
-    //   case method === "GET" && url === "/profile":
-    //     console.log("profile");
-    //     requireAuthentication(req, res, async () => {
-    //       console.log("profile");
-    //       await profileController.profileGet(req, res);
-    //     });
-    //     break;
+      case method === "POST" && url === "/learn":
+        requireAuthentication(req, res, () => {
+          learnController.learnPost(req, res);
+        });
+        break;
+      case method === "GET" && url === "/learn":
+        requireAuthentication(req, res, () => {
+          learnController.learnGet(req, res);
+        });
+        break;
+      case method === "POST" && url === "/help":
+        console.log("helpPost");
+        requireAuthentication(req, res, () => {
+          helpController.helpPost(req, res);
+        });
+        break;
+      case method === "GET" && url === "/help":
+        console.log("helpGet");
+        requireAuthentication(req, res, () => {
+          helpController.helpGet(req, res);
+        });
+        break;
+      case method === "POST" && url === "/lesson1":
+        console.log("lesson1Post");
+        requireAuthentication(req, res, () => {
+          learnController.learnPost(req, res);
+        });
+        break;
+      case method === "GET" && url === "/lesson1":
+        console.log("lesson1Get");
+        requireAuthentication(req, res, () => {
+          learnController.learnGet(req, res);
+        });
+        break;
+      //   case method === "GET" && url === "/profile":
+      //     console.log("profile");
+      //     requireAuthentication(req, res, async () => {
+      //       console.log("profile");
+      //       await profileController.profileGet(req, res);
+      //     });
+      //     break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);
         break;
@@ -90,5 +113,7 @@ server.on("request", (req, res) => {
 });
 
 mongodbConnect(async () => {
-    server.listen(PORT, () => console.log(`[server] Server running on port ${PORT}`))
-})
+  server.listen(PORT, () =>
+    console.log(`[server] Server running on port ${PORT}`)
+  );
+});

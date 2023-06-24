@@ -33,7 +33,6 @@ class User {
         const db = getDb()
         db.collection('users').deleteOne({ email })
     }
-
 }
 
 module.exports = User
