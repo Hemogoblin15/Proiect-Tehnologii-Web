@@ -16,6 +16,9 @@ profileController.profileGet = async (req, res) => {
         .replace("{{name}}", user.name)
         .replace("{{country}}", user.country)
         .replace("{{occupation}}", user.occupation)
+      if (user.admin)
+      profilePage
+      .replace("{{BUTTON-DELETE}}", 'html code')
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(profilePage);
     }

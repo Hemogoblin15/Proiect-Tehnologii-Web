@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../shared/lesson.css" />
+    <link rel="stylesheet" href="../../shared/navbar.css" />
+    <title>{{name}}</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/home" style="color: white; text-decoration: none">
+          <img src="../../shared/imagini/logo-removebg-preview.png" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <div class="menu">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li class="learn">
+            <a href="/learn">Learn</a>
+          </li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </div>
+      </ul>
+    </nav>
+    <div class="headerf">
+      <header>
+        {{title}}
+      </header>
+    </div>
+    <br />
+    <p>
+      {{text}}
+    </p>
+    <br />
+    <form id="quiz-form">
+      <fieldset>
+        <legend>
+          <u
+            >{{Q1}}</u
+          >
+        </legend>
+        <label
+          ><input id="1" type="radio" name="first" unchecked />Emojis are
+          universally understood across all cultures.
+        </label>
+        <br />
+        <label
+          ><input id="2" type="radio" name="first" unchecked />Context is
+          irrelevant when using emojis.
+        </label>
+        <br />
+        <label>
+          <input id="3" type="radio" name="first" unchecked />Emojis may have
+          different meanings in different cultural contexts.
+        </label>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset>
+        <legend>
+          <u>2. Why is multilingualism important in online interactions?</u>
+        </legend>
+        <label
+          ><input id="1" type="radio" name="second" unchecked />It helps to
+          exclude non-native speakers.
+        </label>
+        <br />
+        <label
+          ><input id="2" type="radio" name="second" unchecked />It fosters
+          inclusivity and understanding.
+        </label>
+        <br />
+        <label>
+          <input id="3" type="radio" name="second" unchecked /> Multilingualism
+          is not relevant in online communication.
+        </label>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset>
+        <legend>
+          <u
+            >3. What should you consider when engaging with individuals from
+            different cultural backgrounds online?</u
+          >
+        </legend>
+        <label
+          ><input id="1" type="radio" name="third" unchecked />Ignore cultural
+          differences to avoid misunderstandings.
+        </label>
+        <br />
+        <label
+          ><input id="2" type="radio" name="third" unchecked />
+          Adapt your communication style to accommodate cultural norms.
+        </label>
+        <br />
+        <label>
+          <input id="3" type="radio" name="third" unchecked />Assume that
+          everyone shares the same cultural beliefs.
+        </label>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset>
+        <legend>
+          <u>
+            4. How should you approach scheduling online meetings with
+            individuals from different time zones?
+          </u>
+        </legend>
+        <label
+          ><input id="1" type="radio" name="fourth" unchecked /> Only consider
+          your own time zone when setting the meeting time.
+        </label>
+        <br />
+        <label
+          ><input id="2" type="radio" name="fourth" unchecked />
+          Be mindful of others' time differences and schedule accordingly.
+        </label>
+        <br />
+        <label>
+          <input id="3" type="radio" name="fourth" unchecked />Expect immediate
+          responses regardless of time zone differences.
+        </label>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset>
+        <legend>
+          <u
+            >5. What attitude fosters positive interactions with individuals
+            from diverse backgrounds online?</u
+          >
+        </legend>
+        <label
+          ><input id="1" type="radio" name="fifth" unchecked />Closed-mindedness
+          and refusal to engage in dialogue.
+        </label>
+        <br />
+        <label
+          ><input id="2" type="radio" name="fifth" unchecked />
+          Open-mindedness and willingness to learn from others.
+        </label>
+        <br />
+        <label>
+          <input id="3" type="radio" name="fifth" unchecked />Insistence on
+          imposing your own cultural practices.
+        </label>
+      </fieldset>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <script src="../../public/answers2.js"></script>
+  </body>
+</html>
