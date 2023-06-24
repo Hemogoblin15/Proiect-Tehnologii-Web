@@ -5,7 +5,7 @@ const User = require("../models/userModel")
 let profileController = {};
 
 profileController.profileGet = async (req, res) => {
-  let user = await User.findByEmail("pletosu209@gmail.com");
+  let user = await User.findById(req.locals.userId);
   fs.readFile("./views/profile.html", "utf8", (err, data) => {
     if (user === null) {
       console.error("Error reading profile.html", err);
