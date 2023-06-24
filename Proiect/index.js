@@ -54,11 +54,11 @@ const server = http.createServer((req, res) => {
           homeController.homeGet(req, res);
         });
         break;
-      case method === "POST" && url === "/learn":
-        requireAuthentication(req, res, () => {
-          learnController.learnPost(req, res);
-        });
-        break;
+      // case method === "POST" && url === "/learn":
+      //   requireAuthentication(req, res, () => {
+      //     learnController.learnPost(req, res);
+      //   });
+      //   break;
       case method === "GET" && url === "/learn":
         requireAuthentication(req, res, () => {
           learnController.learnGet(req, res);
@@ -76,13 +76,13 @@ const server = http.createServer((req, res) => {
           helpController.helpGet(req, res);
         });
         break;
-      case method === "POST" && url === "/lesson1":
-        console.log("lesson1Post");
-        requireAuthentication(req, res, () => {
-          learnController.learnPost(req, res);
-        });
+      // case method === "POST" && url === "/lesson1":
+      //   console.log("lesson1Post");
+      //   requireAuthentication(req, res, () => {
+      //     learnController.learnPost(req, res);
+      //   });
         break;
-      case method === "GET" && url === "/lesson1":
+      case method === "GET" && req.url.match(/^\/learn\/.+/):
         console.log("lesson1Get");
         requireAuthentication(req, res, () => {
           learnController.learnGet(req, res);

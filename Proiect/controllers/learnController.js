@@ -14,15 +14,18 @@ learnController.chooseLesson = (req, res) => {
   req.on("end", async () => {
     switch (lessonNumber) {
       case 1:
-        Utils.redirectTo("/lesson1", res);
+        Utils.redirectTo("/learn/lesson1", res);
       case 2:
-        Utils.redirectTo("/lesson2", res);
+        Utils.redirectTo("/learn/lesson2", res);
       case 3:
-        Utils.redirectTo("/lesson3", res);
+        Utils.redirectTo("/learn/lesson3", res);
       case 4:
-        Utils.redirectTo("/lesson4", res);
+        Utils.redirectTo("/learn/lesson4", res);
     }
   });
+};
+learnController.learnGet = (req, res) => {
+  Utils.sendResources(req, res, "views/learn.html");
 };
 
 // learnController.learnPost = (req, res) => {
