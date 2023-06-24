@@ -1,10 +1,51 @@
 const getDb = require("../database").getDb;
 
 class Lesson {
-  constructor(lessonText, lessonNumber) {
-    this.lessonText = lessonText;
-    this.lessonNumber = lessonNumber;
-  }
+  constructor(
+    urlTag,
+    Title, 
+    Text,
+    Tags, 
+    Q1, 
+    A11,
+    A12,
+    A13,
+    A1c, 
+    Q2, 
+    A2, 
+    Q3, 
+    A4, 
+    Q5, 
+    A5) {
+    this.urlTag = urlTag;
+    this.Title = Title;
+    this.Text = Text;
+    this.Tags = Tags;
+    this.Q1 = Q1;
+    this.A11 = A11;
+    this.A12 = A12;
+    this.A13 = A13;
+    this.A1c = A1c;  
+    this.Q2 = Q2; 
+    this.A21 = A21;
+    this.A22 = A22;
+    this.A23 = A23;
+    this.A2c = A2c; 
+    this.Q3 = Q3;
+    this.A31 = A31;
+    this.A32 = A32;
+    this.A33 = A33;
+    this.A3c = A3c;
+    this.Q4 = Q4;
+    this.A41 = A41;
+    this.A42 = A42;
+    this.A43 = A43;
+    this.A4c = A4c; 
+    this.Q5 = Q5;
+    this.A51 = A51;
+    this.A52 = A52;
+    this.A53 = A53;
+    this.A5c = A5c;   }
 
   save() {
     const db = getDb();
@@ -16,16 +57,16 @@ class Lesson {
     return db.collection("lessons").find().toArray();
   }
 
-  static findByNumber(lessonNumber) {
+  static findByURLTag(tag) {
     const db = getDb();
     const collection = db.collection("lessons");
-    const lesson = collection.findOne({ lessonNumber });
+    const lesson = collection.findOne({ urlTag : tag })
     return lesson;
   }
 
-  static remove(lessonNumber) {
+  static remove(lessonTitle) {
     const db = getDb();
-    db.collection("lessons").deleteOne({ lessonNumber });
+    db.collection("lessons").deleteOne({ lessonTitle });
   }
 }
 
