@@ -21,6 +21,12 @@ class User {
         return db.collection('users').find().toArray()
     }
 
+    static findById(id) {
+        const db = getDb()
+        const collection = db.collection('users');
+        const user = collection.findOne({ _id : id});
+        return user;
+    }
 
     static findByEmail(email) {
         const db = getDb()

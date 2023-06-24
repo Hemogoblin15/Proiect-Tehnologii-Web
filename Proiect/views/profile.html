@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My profile</title>
+    <link rel="stylesheet" href="../shared/profile.css" />
+    <link rel="stylesheet" href="../shared/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="logo">
+          <a href="/home" style="color: white; text-decoration: none">
+            <img src="../shared/imagini/logo-removebg-preview.png" />
+          </a>
+        </div>
+        <ul class="nav-links">
+          <input type="checkbox" id="checkbox_toggle" />
+          <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+          <div class="menu">
+            <li><a href="/home">Home</a></li>
+            <li class="learn">
+              <a href="/learn">Learn</a>
+            </li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/help">Help</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </div>
+        </ul>
+      </nav>
+    <main class="profile-container container main-container">
+        <div class="separator"></div>
+        <div class="name">{{name}}</div>
+        <div class="separator"></div>
+        <ul class="user-details">
+          <li class="ocupation">{{ocupation}}</li>
+          <li class="country">{{country}}</li>
+        </ul>
+      </div>
+    </main>
+  </body>
+  </html>

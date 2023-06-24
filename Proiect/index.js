@@ -12,7 +12,7 @@ const loginController = require("./controllers/loginController");
 const homeController = require("./controllers/homeController");
 const helpController = require("./controllers/helpController");
 const learnController = require("./controllers/learnController");
-// const profileController = require("./controllers/profileController");
+const profileController = require("./controllers/profileController");
 const Utils = require("./utils");
 
 const sessionMiddleware = clientSessions({
@@ -88,13 +88,13 @@ const server = http.createServer((req, res) => {
           learnController.lessonGet(req, res);
         });
         break;
-      //   case method === "GET" && url === "/profile":
-      //     console.log("profile");
-      //     requireAuthentication(req, res, async () => {
-      //       console.log("profile");
-      //       await profileController.profileGet(req, res);
-      //     });
-      //     break;
+        case method === "GET" && url === "/profile":
+          console.log("profile");
+          requireAuthentication(req, res, async () => {
+            console.log("profile");
+            await profileController.profileGet(req, res);
+          });
+          break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);
         break;
