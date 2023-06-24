@@ -83,16 +83,18 @@ const server = http.createServer((req, res) => {
       //   });
         break;
       case method === "GET" && url.startsWith("/learn/"):
-        console.log("lesson1Get");
         requireAuthentication(req, res, () => {
           learnController.lessonGet(req, res);
         });
         break;
-        case method === "GET" && url === "/profile":
-          console.log("profile");
+        case method === "GET" && url === "/about":
           requireAuthentication(req, res, async () => {
-            console.log("profile");
-            await profileController.profileGet(req, res);
+            homeController.aboutGet(req, res);
+          });
+          break;
+        case method === "GET" && url === "/profile":
+          requireAuthentication(req, res, async () => {
+            profileController.profileGet(req, res);
           });
           break;
       case method === "GET" || method === "HEAD":

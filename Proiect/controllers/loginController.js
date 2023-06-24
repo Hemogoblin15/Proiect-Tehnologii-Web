@@ -46,14 +46,14 @@ loginController.registerPost = (req, res) => {
         body += chunk;
     });
     req.on("end", async () => {
-        const {  firstName, lastName, country, ocupation, email, password } = parseFormData(body);
+        const {  firstName, lastName, country, occupation, email, password } = parseFormData(body);
         const findUser = await User.findByEmail(email);
         if (findUser){
             res.statusCode = 401;
             res.end("An account using this email already exists");
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
-            const user = new User(firstName, lastName, country, ocupation, email, hashedPassword);
+            const user = new User(firstName, lastName, country, occupation, email, hashedPassword);
             user.save();
             res.statusCode = 302;
             Utils.redirectTo("/login", res);

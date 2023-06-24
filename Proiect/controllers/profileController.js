@@ -15,7 +15,7 @@ profileController.profileGet = async (req, res) => {
       let profilePage = data
         .replace("{{name}}", user.name)
         .replace("{{country}}", user.country)
-        .replace("{{ocupation}}", user.ocupation)
+        .replace("{{occupation}}", user.occupation)
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(profilePage);
     }

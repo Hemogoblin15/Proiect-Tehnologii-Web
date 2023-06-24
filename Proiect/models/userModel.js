@@ -2,10 +2,10 @@ const getDb = require('../database').getDb
 
 
 class User {
-    constructor(firstName, lastName, country, ocupation, email, password) {
+    constructor(firstName, lastName, country, occupation, email, password) {
         this.name = firstName + " " + lastName
         this.country = country
-        this.ocupation = ocupation
+        this.occupation = occupation
         this.email = email
         this.password = password
         this.admin = false
