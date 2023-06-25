@@ -62,6 +62,7 @@ learnController.lessonGet = async (req, res) => {
   else {
   fs.readFile("./views/lesson.html", "utf8", (err, data) => {
       let lessonPage = data
+      .replace("{{name}}", parseDbData(lesson.title))
       .replace("{{title}}", parseDbData(lesson.title))
       .replace("{{text}}", parseDbData(lesson.text))
       .replace("{{Q1}}", parseDbData(lesson.Q1))
