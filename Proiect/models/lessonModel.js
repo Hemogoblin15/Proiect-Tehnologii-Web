@@ -1,4 +1,5 @@
 const getDb = require("../database").getDb;
+const mongodb = require('mongodb')
 
 class Lesson {
   constructor(
@@ -73,16 +74,16 @@ class Lesson {
     return db.collection("lessons").find().toArray();
   }
 
-  static findByURLTag(tag) {
+  static async findByURLTag(urlTag) {
     const db = getDb();
-    const collection = db.collection("lessons");
-    const lesson = collection.findOne({ urlTag: tag });
+    const collection = db.collection('lessons');
+    const lesson = await collection.findOne({ urlTag });
     return lesson;
   }
 
-  static remove(lessonTitle) {
+  static remove(urlTag) {
     const db = getDb();
-    db.collection("lessons").deleteOne({ lessonTitle });
+    db.collection("lessons").deleteOne({ urlTag });
   }
 }
 

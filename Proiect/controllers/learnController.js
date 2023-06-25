@@ -41,8 +41,41 @@ learnController.lessonAddGet = async (req, res) => {
 };
 
 learnController.lessonGet = async (req, res) => {
-  let lesson = req.url.split("/")[2];
-  Utils.sendResources(req, res, "views/lessons/" + lesson + ".html");
+  const lessonURL = req.url.split("/")[2];
+  const lesson = await Lesson.findByURLTag(lessonURL);
+  if (!lesson) {
+    res.statusCode = 401;
+    res.end("A lesson with this title does not exist");
+  }
+  else {
+  fs.readFile("./views/lesson.html", "utf8", (err, data) => {
+      let lessonPage = data
+      .replace("{{title}}", parseDbData(lesson.title))
+      .replace("{{text}}", parseDbData(lesson.text))
+      .replace("{{Q1}}", parseDbData(lesson.Q1))
+      .replace("{{A11}}", parseDbData(lesson.A11))
+      .replace("{{A12}}", parseDbData(lesson.A12))
+      .replace("{{A13}}", parseDbData(lesson.A13))
+      .replace("{{Q2}}", parseDbData(lesson.Q2))
+      .replace("{{A21}}", parseDbData(lesson.A21))
+      .replace("{{A22}}", parseDbData(lesson.A22))
+      .replace("{{A23}}", parseDbData(lesson.A23))
+      .replace("{{Q3}}", parseDbData(lesson.Q3))
+      .replace("{{A31}}", parseDbData(lesson.A31))
+      .replace("{{A32}}", parseDbData(lesson.A32))
+      .replace("{{A33}}", parseDbData(lesson.A33))
+      .replace("{{Q4}}", parseDbData(lesson.Q4))
+      .replace("{{A41}}", parseDbData(lesson.A41))
+      .replace("{{A42}}", parseDbData(lesson.A42))
+      .replace("{{A43}}", parseDbData(lesson.A43))
+      .replace("{{Q5}}", parseDbData(lesson.Q5))
+      .replace("{{A51}}", parseDbData(lesson.A51))
+      .replace("{{A52}}", parseDbData(lesson.A52))
+      .replace("{{A53}}", parseDbData(lesson.A53));
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end(lessonPage);
+    })
+  };
 };
 
 learnController.lessonAddPost = (req, res) => {
@@ -138,6 +171,17 @@ function parseFormData(formData) {
   }
 
   return data;
-}   
+}
+
+function parseDbData(dbData) {
+  let data = "";
+  const dbFields = dbData.split("+");
+
+  for (let i = 0; i < dbFields.length; i++) {
+    data = data + dbFields[i] + " ";
+  }
+
+  return data;
+} 
 
 module.exports = learnController;
