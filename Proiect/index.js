@@ -83,12 +83,17 @@ const server = http.createServer((req, res) => {
         break;
       case method === "POST" && isLearnEditUrl(req.url):
         requireAuthentication(req, res, () => {
-          learnController.lessonEditPost(req, res); 
+          learnController.lessonEditPost(req, res);
         });
         break;
       case method === "GET" && isLearnEditUrl(req.url):
         requireAuthentication(req, res, () => {
           learnController.lessonEditGet(req, res);
+        });
+        break;
+      case method === "GET" && isLearnDeleteUrl(req.url):
+        requireAuthentication(req, res, () => {
+          learnController.lessonDeleteGet(req, res);
         });
         break;
       case method === "GET" && url.startsWith("/learn/"):
@@ -119,6 +124,11 @@ const server = http.createServer((req, res) => {
 
 function isLearnEditUrl(url) {
   const pattern = /^\/learn\/\w+\/edit$/;
+  return pattern.test(url);
+}
+
+function isLearnDeleteUrl(url) {
+  const pattern = /^\/learn\/\w+\/delete$/;
   return pattern.test(url);
 }
 

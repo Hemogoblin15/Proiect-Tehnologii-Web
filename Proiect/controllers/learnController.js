@@ -62,7 +62,7 @@ learnController.lessonGet = async (req, res) => {
   if (!lesson) {
     res.statusCode = 401;
     res.end("A lesson with this title does not exist");
-  } else if (!user.admin){
+  } else if (!user.admin) {
     fs.readFile("./views/lesson.html", "utf8", (err, data) => {
       let lessonPage = data
         .replace("{{name}}", parseDbData(lesson.title))
@@ -88,7 +88,8 @@ learnController.lessonGet = async (req, res) => {
         .replace("{{A51}}", parseDbData(lesson.A51))
         .replace("{{A52}}", parseDbData(lesson.A52))
         .replace("{{A53}}", parseDbData(lesson.A53))
-        .replace("{{edit-button", "");
+        .replace("{{edit-button", "")
+        .replace("{{delete-button", "");
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(lessonPage);
     });
@@ -118,8 +119,9 @@ learnController.lessonGet = async (req, res) => {
         .replace("{{A51}}", parseDbData(lesson.A51))
         .replace("{{A52}}", parseDbData(lesson.A52))
         .replace("{{A53}}", parseDbData(lesson.A53))
-        .replace("{{edit-button}}", 
-        `
+        .replace(
+          "{{edit-button}}",
+          `
         <div class="edit-button">
         <script>
         function redirectToEdit() {
@@ -131,12 +133,42 @@ learnController.lessonGet = async (req, res) => {
         </span>
         </button>
         </div>
-        `)
+        `
+        )
+        .replace("{{urlTag}}", parseDbData(lesson.urlTag))
+        .replace(
+          "{{delete-button}}",
+          `
+        <script>
+          function showAlert(){
+            var result = window.confirm("Are you sure you want to delete the lesson?");
+            if(result) {
+              window.location.href = "{{urlTag}}/delete";
+            } else {
+              window.location.href = "{{urlTag}}";
+            }
+          }
+        </script>
+        <button onclick="showAlert()">
+        <span> Delete lesson
+        </span>
+        </button>
+        </div>`
+        )
+        .replace("{{urlTag}}", parseDbData(lesson.urlTag))
         .replace("{{urlTag}}", parseDbData(lesson.urlTag));
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(lessonPage);
     });
   }
+};
+
+learnController.lessonDeleteGet = (req, res) => {
+  const lessonURL = req.url.split("/")[2];
+  Lesson.remove(lessonURL);
+  res.statusCode = 302;
+  Utils.redirectTo("/learn", res);
+  res.end();
 };
 
 learnController.lessonAddPost = (req, res) => {
@@ -305,41 +337,41 @@ learnController.lessonEditPost = (req, res) => {
     const findLesson = await Lesson.findByURLTag(lessonURL);
     console.log(lessonURL);
     await Lesson.editLesson(
-        findLesson._id,
-        urlTag,
-        title,
-        description,
-        text,
-        tags,
-        Q1,
-        A11,
-        A12,
-        A13,
-        A1c,
-        Q2,
-        A21,
-        A22,
-        A23,
-        A2c,
-        Q3,
-        A31,
-        A32,
-        A33,
-        A3c,
-        Q4,
-        A41,
-        A42,
-        A43,
-        A4c,
-        Q5,
-        A51,
-        A52,
-        A53,
-        A5c
-      );
-      res.statusCode = 302;
-      Utils.redirectTo("/learn/" + parseDbData(urlTag), res);
-      res.end();
+      findLesson._id,
+      urlTag,
+      title,
+      description,
+      text,
+      tags,
+      Q1,
+      A11,
+      A12,
+      A13,
+      A1c,
+      Q2,
+      A21,
+      A22,
+      A23,
+      A2c,
+      Q3,
+      A31,
+      A32,
+      A33,
+      A3c,
+      Q4,
+      A41,
+      A42,
+      A43,
+      A4c,
+      Q5,
+      A51,
+      A52,
+      A53,
+      A5c
+    );
+    res.statusCode = 302;
+    Utils.redirectTo("/learn/" + parseDbData(urlTag), res);
+    res.end();
   });
 };
 
