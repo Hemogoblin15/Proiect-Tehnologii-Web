@@ -81,12 +81,13 @@ const server = http.createServer((req, res) => {
           learnController.lessonAddGet(req, res);
         });
         break;
-      case method === "POST" && url.endsWith("/edit") && url.startsWith("/learn/"):
+      case method === "POST" && isLearnEditUrl(req.url):
         requireAuthentication(req, res, () => {
+          console.log("ZI ba cv");
           learnController.lessonEditPost(req, res); 
         });
         break;
-      case method === "GET" && url.endsWith("/edit") && url.startsWith("/learn/"):
+      case method === "GET" && isLearnEditUrl(req.url):
         requireAuthentication(req, res, () => {
           learnController.lessonEditGet(req, res);
         });
@@ -116,6 +117,11 @@ const server = http.createServer((req, res) => {
     }
   });
 });
+
+function isLearnEditUrl(url) {
+  const pattern = /^\/learn\/\w+\/edit$/;
+  return pattern.test(url);
+}
 
 server.on("request", (req, res) => {
   sessionMiddleware(req, res, () => {

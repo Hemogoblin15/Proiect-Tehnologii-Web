@@ -34,7 +34,7 @@
       </ul>
     </nav>
     <div class="form-box">
-      <form action="/learn/edit" method="post" autocomplete="off">
+      <form action="/learn/{{urlTag}}/edit" method="post" autocomplete="off">
         <div class="user-box">
           <div class="headerf">
             <input
@@ -52,8 +52,7 @@
             value="{{description}}"
             required="true"
           />
-          <textarea type="text" id="text" name="text" required="true">
-{{text}}</textarea
+          <textarea type="text" id="text" name="text" required="true">{{text}}</textarea
           >
           <input
             type="text"

@@ -184,6 +184,7 @@ learnController.lessonEditGet = async (req, res) => {
       .replace("{{title}}", parseDbData(lesson.title))
       .replace("{{text}}", parseDbData(lesson.text))
       .replace("{{urlTag}}", parseDbData(lesson.urlTag))
+      .replace("{{urlTag}}", parseDbData(lesson.urlTag))
       .replace("{{description}}", parseDbData(lesson.description))
       .replace("{{tags}}", parseDbData(lesson.tags))
       .replace("{{Q1}}", parseDbData(lesson.Q1))
@@ -213,12 +214,12 @@ learnController.lessonEditGet = async (req, res) => {
 
 learnController.lessonEditPost = (req, res) => {
   const lessonURL = req.url.split("/")[2];
-  Lesson.remove(lessonURL);
+  console.log(req.url);
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
-    console.log(body);
   });
+  console.log(body);
   req.on("end", async () => {
     const {
       title,
@@ -252,13 +253,11 @@ learnController.lessonEditPost = (req, res) => {
       A53,
       A5c,
     } = parseFormData(body);
-    console.log("\n\n %s", Q1);
-    const findLesson = await Lesson.findByURLTag(urlTag);
-    if (findLesson) {
-      res.statusCode = 401;
-      res.end("A lesson using this title already exists");
-    } else {
-      const lesson = new Lesson(
+    console.log(lessonURL);
+    const findLesson = await Lesson.findByURLTag(lessonURL);
+    console.log(lessonURL);
+    await Lesson.editLesson(
+        findLesson._id,
         urlTag,
         title,
         description,
@@ -290,11 +289,9 @@ learnController.lessonEditPost = (req, res) => {
         A53,
         A5c
       );
-      lesson.save();
       res.statusCode = 302;
-      Utils.redirectTo("/learn/" + findLesson.urlTag, res);
+      Utils.redirectTo("/learn/" + parseDbData(urlTag), res);
       res.end();
-    }
   });
 };
 
@@ -314,9 +311,10 @@ function parseDbData(dbData) {
   let data = "";
   const dbFields = dbData.split("+");
 
-  for (let i = 0; i < dbFields.length; i++) {
+  for (let i = 0; i < dbFields.length - 1; i++) {
     data = data + dbFields[i] + " ";
   }
+  data = data + dbFields[dbFields.length - 1];
 
   return data;
 }
