@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My profile</title>
-    <link rel="stylesheet" href="../shared/profile.css" />
+      <link rel="stylesheet" href="../shared/profile.css" />
     <link rel="stylesheet" href="../shared/navbar.css" />
+    <link rel="stylesheet" href="../shared/learn.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -39,5 +40,11 @@
         </ul>
       </div>
     </main>
+    <div class="container">
+      <h2>Recommended lessons</h2>
+      <div class="lesson-list">
+        {{each-lesson}}
+      </div>
+    </div>
   </body>
   </html>

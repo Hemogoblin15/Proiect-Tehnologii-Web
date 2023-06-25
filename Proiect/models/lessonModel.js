@@ -83,6 +83,13 @@ class Lesson {
     return lesson;
   }
 
+  static async findLessons(tags){
+    const db = getDb();
+    const collection = db.collection('lessons')
+    const lessons = await collection.find({ tags }).toArray();
+    return lessons;
+  }
+
   static remove(urlTag) {
     const db = getDb();
     db.collection("lessons").deleteOne({ urlTag });
