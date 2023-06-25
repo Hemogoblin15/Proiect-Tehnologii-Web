@@ -1,28 +1,26 @@
 body {
   position: relative;
   font-family: cursive;
-  margin-top: 500px;
-  background-repeat: repeat;
+  margin: 0;
+  padding: 0;
   background-color: black;
   color: white;
 }
 
 .learn {
-  position: relative;
+  /* Remove position: relative */
 }
 
 .headerf {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
-  margin: 5% auto;
-  margin-top: 12%;
+  margin: 12% auto;
   max-width: 45%;
   padding: 1%;
   border-radius: 45px;
   border: 2px solid white;
   justify-content: center;
   align-items: center;
-  position: relative;
   display: flex;
   margin-bottom: 2%;
   font-size: 45px;
@@ -39,8 +37,6 @@ p {
   background-repeat: no-repeat;
   border-radius: 1%;
   border: 5px solid rgb(168, 163, 163);
-  /* width: auto;
-  height: auto; */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
   word-spacing: 3px;
@@ -54,23 +50,23 @@ fieldset {
 }
 
 form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .form-box {
-  position: absolute;
-  margin-top: 400px;
-  top: 50%;
-  left: 50%;
+  margin-top: 100px;
   width: 60%;
   height: auto;
   padding: 40px;
-  transform: translate(-50%, -50%);
   background: rgba(24, 20, 20, 0.987);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -91,7 +87,7 @@ form {
 }
 
 .form-box .user-box label {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   padding: 10px 0;
@@ -99,21 +95,13 @@ form {
   color: #fff;
   pointer-events: none;
   transition: 0.5s;
-}
-
-.form-box .user-box input:focus ~ label,
-.form-box .user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #bdb8b8;
-  font-size: 12px;
+  align-items: center;
 }
 
 .form-box form button {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #ffffff;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -163,12 +151,6 @@ form {
   align-items: center;
 }
 
-.form-stuff {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 label {
   font-weight: bold;
 }
@@ -176,4 +158,16 @@ label {
 input[type="text"],
 select {
   margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
 }
