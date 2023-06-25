@@ -139,7 +139,8 @@ learnController.lessonGet = async (req, res) => {
         .replace(
           "{{delete-button}}",
           `
-        <script>
+        <div class="delete-button">
+          <script>
           function showAlert(){
             var result = window.confirm("Are you sure you want to delete the lesson?");
             if(result) {
