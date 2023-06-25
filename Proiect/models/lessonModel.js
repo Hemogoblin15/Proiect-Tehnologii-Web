@@ -5,6 +5,7 @@ class Lesson {
   constructor(
     urlTag,
     title,
+    description,
     text,
     tags,
     Q1,
@@ -35,6 +36,7 @@ class Lesson {
   ) {
     this.urlTag = urlTag;
     this.title = title;
+    this.description = description;
     this.text = text;
     this.tags = tags;
     this.Q1 = Q1;

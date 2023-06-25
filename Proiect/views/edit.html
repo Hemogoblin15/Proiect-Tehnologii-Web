@@ -39,7 +39,7 @@
           type="text"
           id="title"
           name="title"
-          placeholder="Title"
+          value="{{title}}"
           required="true"
         />
       </div>
@@ -49,25 +49,19 @@
           type="text"
           id="description"
           name="description"
-          placeholder="Describe your lesson..."
+          value="{{description}}"
           required="true"
         />
       </div>
       <div class="lessonText">
-        <textarea
-          type="text"
-          id="text"
-          name="text"
-          placeholder="Write your lesson here..."
-          required="true"
-        ></textarea>
+        <textarea type="text" id="text" name="text" required="true">{{text}}</textarea>
       </div>
       <div class="urlTag">
         <input
           type="text"
           id="urlTag"
           name="urlTag"
-          placeholder="urlTag"
+          value="{{urlTag}}"
           required="true"
         />
       </div>
@@ -76,7 +70,7 @@
           type="text"
           id="tags"
           name="tags"
-          placeholder="lesson tags"
+          value="{{tags}}"
           required="true"
         />
       </div>
@@ -84,26 +78,26 @@
       <br />
       <div class="quiz-container">
         <label for="question1">Question 1:</label>
-        <input type="text" id="Q1" name="Q1" required="true" />
+        <input type="text" id="Q1" name="Q1" value="{{Q1}}" required="true" />
         <input
           type="text"
           id="A11"
           name="A11"
-          placeholder="Answer 1"
+          value="{{A11}}"
           required="true"
         />
         <input
           type="text"
           id="A12"
           name="A12"
-          placeholder="Answer 2"
+          value="{{A12}}"
           required="true"
         />
         <input
           type="text"
           id="A13"
           name="A13"
-          placeholder="Answer 3"
+          value="{{A13}}"
           required="true"
         />
         <select name="A1c" class="form-control" id="A1c">
@@ -120,26 +114,26 @@
         </select>
         <br />
         <label for="question2">Question 2:</label>
-        <input type="text" id="Q2" name="Q2" required="true" />
+        <input type="text" id="Q2" name="Q2" value="{{Q2}}" required="true" />
         <input
           type="text"
           id="A21"
           name="A21"
-          placeholder="Answer 1"
+          value="{{A21}}"
           required="true"
         />
         <input
           type="text"
           id="A22"
           name="A22"
-          placeholder="Answer 2"
+          value="{{A22}}"
           required="true"
         />
         <input
           type="text"
           id="A23"
           name="A23"
-          placeholder="Answer 3"
+          value="{{A23}}"
           required="true"
         />
         <select name="A2c" class="form-control" id="A2c">
@@ -156,26 +150,26 @@
         </select>
         <br />
         <label for="question3">Question 3:</label>
-        <input type="text" id="Q3" name="Q3" required="true" />
+        <input type="text" id="Q3" name="Q3" value="{{Q3}}" required="true" />
         <input
           type="text"
           id="A31"
           name="A31"
-          placeholder="Answer 1"
+          value="{{A31}}"
           required="true"
         />
         <input
           type="text"
           id="A32"
           name="A32"
-          placeholder="Answer 2"
+          value="{{A32}}"
           required="true"
         />
         <input
           type="text"
           id="A33"
           name="A33"
-          placeholder="Answer 3"
+          value="{{A33}}"
           required="true"
         />
         <select name="A3c" class="form-control" id="A3c">
@@ -192,28 +186,10 @@
         </select>
         <br />
         <label for="question4">Question 4:</label>
-        <input type="text" id="Q4" name="Q4" required="true" />
-        <input
-          type="text"
-          id="A41"
-          name="A41"
-          placeholder="Answer 1"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A42"
-          name="A42"
-          placeholder="Answer 2"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A43"
-          name="A43"
-          placeholder="Answer 3"
-          required="true"
-        />
+        <input type="text" id="Q4" name="Q4" value="{{Q4}}" required="true" />
+        <input type="text" id="A41" name="A41" value="{A41}" required="true" />
+        <input type="text" id="A42" name="A42" value="{A42}" required="true" />
+        <input type="text" id="A43" name="A43" value="{A43}" required="true" />
         <select name="A4c" class="form-control" id="A4c">
           <option
             value="0"
@@ -228,26 +204,26 @@
         </select>
         <br />
         <label for="question5">Question 5:</label>
-        <input type="text" id="Q5" name="Q5" required="true" />
+        <input type="text" id="Q5" name="Q5" value="{{Q5}}" required="true" />
         <input
           type="text"
           id="A51"
           name="A51"
-          placeholder="Answer 1"
+          value="{{A51}}"
           required="true"
         />
         <input
           type="text"
           id="A52"
           name="A52"
-          placeholder="Answer 2"
+          value="{{A52}}"
           required="true"
         />
         <input
           type="text"
           id="A53"
           name="A53"
-          placeholder="Answer 3"
+          value="{{A53}}"
           required="true"
         />
         <select name="A5c" class="form-control" id="A5c">

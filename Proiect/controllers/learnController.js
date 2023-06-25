@@ -87,6 +87,7 @@ learnController.lessonAddPost = (req, res) => {
   req.on("end", async () => {
     const {
       title,
+      description,
       text,
       urlTag,
       tags,
@@ -125,6 +126,7 @@ learnController.lessonAddPost = (req, res) => {
       const lesson = new Lesson(
         urlTag,
         title,
+        description,
         text,
         tags,
         Q1,
