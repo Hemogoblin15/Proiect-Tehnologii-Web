@@ -32,41 +32,9 @@
     <div class="container">
       <h2>Our lessons</h2>
       <div class="lesson-list">
-        <div class="lesson">
-          <h3>Lesson 1: Netiquette Basics</h3>
-          <p>
-            Learn the basics of online etiquette, including appropriate
-            language, behavior, and tone.
-          </p>
-          <a href="/learn/NetQBasics">Start Lesson</a>
-        </div>
-        <div class="lesson">
-          <h3>Lesson 2: Navigating online meetings</h3>
-          <p>
-            Learn how to behave, act, talk, dress and more, when meeting people
-            online.
-          </p>
-          <a href="/learn/OnlineMeetings">Start Lesson</a>
-        </div>
-        <div class="lesson">
-          <h3>Lesson 3: Online Behavior, Etiquette, and Addressing</h3>
-          <p>
-            Understand the do's and don'ts of talking to people, and how to
-            maintain a positive online presence.
-          </p>
-          <a href="/learn/BehaviorEtiqAddress">Start Lesson</a>
-        </div>
-        <div class="lesson">
-          <h3>Lesson 4: Emojis, Multilingualism, Cultural Differences</h3>
-          <p>
-            Learn how to use emojis, pass the language barriers and talk to
-            people from all around the globe.
-          </p>
-          <a href="/learn/EmojiMultiCult">Start Lesson</a>
-        </div>
+        {{each-lesson}}  
       </div>
     </div>
-    <script src="../lessonSelector.js"></script>
     <div class="add-button">
       {{addButton}}
     </div>

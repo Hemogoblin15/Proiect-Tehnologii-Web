@@ -2,18 +2,27 @@ const Utils = require("../utils");
 const fs = require("fs");
 const User = require("../models/userModel");
 const Lesson = require("../models/lessonModel");
-//const { setLessonNumber } = require("../lessonSelector");
+const lessonComponent = require("../views/components/lessonComponent");
+
 let learnController = {};
 
 learnController.learnGet = async (req, res) => {
   let user = await User.findById(req.locals.userId);
+  let lessons = await Lesson.findAll();
+  lessons = lessons?.map((lesson) =>
+    lessonComponent
+    .replace("{{title}}", parseDbData(lesson.title))
+    .replace("{{description}}", parseDbData(lesson.description))
+    .replace("{{urlTag}}", lesson.urlTag)
+    );
   fs.readFile("./views/learn.html", "utf8", (err, data) => {
     if (user === null) {
       console.error("Error reading learn.html", err);
       res.writeHead(500, { "Content-Type": "text/plain" });
       res.end("Internal Server Error");
     } else if (user.admin) {
-      let learnPage = data.replace(
+      let learnPage = data
+      .replace(
         "{{addButton}}",
         `
         <script>
@@ -25,6 +34,9 @@ learnController.learnGet = async (req, res) => {
         <span> Add lesson
         </span>
         </button>`
+      )
+      .replace("{{each-lesson}}",
+      lessons?.reduce((acc, lesson) => acc + lesson, "")
       );
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(learnPage);
