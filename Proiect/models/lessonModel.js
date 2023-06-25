@@ -4,9 +4,9 @@ const mongodb = require('mongodb')
 class Lesson {
   constructor(
     urlTag,
-    Title,
-    Text,
-    Tags,
+    title,
+    text,
+    tags,
     Q1,
     A11,
     A12,
@@ -34,9 +34,9 @@ class Lesson {
     A5c,
   ) {
     this.urlTag = urlTag;
-    this.Title = Title;
-    this.Text = Text;
-    this.Tags = Tags;
+    this.title = title;
+    this.text = text;
+    this.tags = tags;
     this.Q1 = Q1;
     this.A11 = A11;
     this.A12 = A12;
