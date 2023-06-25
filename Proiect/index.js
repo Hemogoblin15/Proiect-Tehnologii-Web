@@ -83,7 +83,6 @@ const server = http.createServer((req, res) => {
         break;
       case method === "POST" && isLearnEditUrl(req.url):
         requireAuthentication(req, res, () => {
-          console.log("ZI ba cv");
           learnController.lessonEditPost(req, res); 
         });
         break;
