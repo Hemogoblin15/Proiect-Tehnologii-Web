@@ -83,6 +83,7 @@ learnController.lessonAddPost = (req, res) => {
       A53,
       A5c,
     } = parseFormData(body);
+    console.log("\n\n %s", Q1);
     const findLesson = await Lesson.findByURLTag(urlTag);
     if (findLesson) {
       res.statusCode = 401;

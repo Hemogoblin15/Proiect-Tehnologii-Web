@@ -33,6 +33,7 @@
         </div>
       </ul>
     </nav>
+    <form action = '/learn/add' method= 'post' autocomplete="off">
     <div class="headerf">
       <input type="text" id="title" name="title" placeholder ="Title" required="true"/>
     </div>
@@ -55,7 +56,6 @@
 
     <br />
     <div class="quiz-container">
-      <form action = '/learn/add' method= 'post' autocomplete="off">
       <label for="question1">Question 1:</label>
       <input type="text" id="Q1" name="Q1" required="true" />
       <input type="text" id="A11" name="A11" placeholder="Answer 1" required="true"/>
@@ -116,7 +116,6 @@
         <option value="A53" label="Answer 3">Answer 3</option> 
       </select>
       <button type="submit">Submit lesson</button>
-      </form>
     </div>
     </form>
     <!-- <script src="../../public/answers2.js"></script> -->
