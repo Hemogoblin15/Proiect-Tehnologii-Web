@@ -54,11 +54,6 @@ const server = http.createServer((req, res) => {
           homeController.homeGet(req, res);
         });
         break;
-      // case method === "POST" && url === "/learn":
-      //   requireAuthentication(req, res, () => {
-      //     learnController.learnPost(req, res);
-      //   });
-      //   break;
       case method === "GET" && url === "/learn":
         requireAuthentication(req, res, () => {
           learnController.learnGet(req, res);
@@ -76,27 +71,31 @@ const server = http.createServer((req, res) => {
           helpController.helpGet(req, res);
         });
         break;
-      // case method === "POST" && url === "/lesson1":
-      //   console.log("lesson1Post");
-      //   requireAuthentication(req, res, () => {
-      //     learnController.learnPost(req, res);
-      //   });
+      case method === "POST" && url === "/learn/add":
+        requireAuthentication(req, res, () => {
+          learnController.lessonAddPost(req, res);
+        });
+        break;
+      case method === "GET" && url === "/learn/add":
+        requireAuthentication(req, res, () => {
+          learnController.lessonAddGet(req, res);
+        });
         break;
       case method === "GET" && url.startsWith("/learn/"):
         requireAuthentication(req, res, () => {
           learnController.lessonGet(req, res);
         });
         break;
-        case method === "GET" && url === "/about":
-          requireAuthentication(req, res, async () => {
-            homeController.aboutGet(req, res);
-          });
-          break;
-        case method === "GET" && url === "/profile":
-          requireAuthentication(req, res, async () => {
-            profileController.profileGet(req, res);
-          });
-          break;
+      case method === "GET" && url === "/about":
+        requireAuthentication(req, res, async () => {
+          homeController.aboutGet(req, res);
+        });
+        break;
+      case method === "GET" && url === "/profile":
+        requireAuthentication(req, res, async () => {
+          profileController.profileGet(req, res);
+        });
+        break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);
         break;
