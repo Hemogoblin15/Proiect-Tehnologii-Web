@@ -33,214 +33,263 @@
         </div>
       </ul>
     </nav>
-    <form action="/learn/add" method="post" autocomplete="off">
-      <div class="headerf">
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value="{{title}}"
-          required="true"
-        />
-      </div>
-      <br />
-      <div class="description">
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value="{{description}}"
-          required="true"
-        />
-      </div>
-      <div class="lessonText">
-        <textarea type="text" id="text" name="text" required="true">{{text}}</textarea>
-      </div>
-      <div class="urlTag">
-        <input
-          type="text"
-          id="urlTag"
-          name="urlTag"
-          value="{{urlTag}}"
-          required="true"
-        />
-      </div>
-      <div class="tags">
-        <input
-          type="text"
-          id="tags"
-          name="tags"
-          value="{{tags}}"
-          required="true"
-        />
-      </div>
-
-      <br />
-      <div class="quiz-container">
-        <label for="question1">Question 1:</label>
-        <input type="text" id="Q1" name="Q1" value="{{Q1}}" required="true" />
-        <input
-          type="text"
-          id="A11"
-          name="A11"
-          value="{{A11}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A12"
-          name="A12"
-          value="{{A12}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A13"
-          name="A13"
-          value="{{A13}}"
-          required="true"
-        />
-        <select name="A1c" class="form-control" id="A1c">
-          <option
-            value="0"
-            label="Select the correct answer..."
-            selected="selected"
-          >
-            Select the correct answer...
-          </option>
-          <option value="A11" label="Answer 1">Answer 1</option>
-          <option value="A12" label="Answer 2">Answer 2</option>
-          <option value="A13" label="Answer 3">Answer 3</option>
-        </select>
+    <form action="/learn/edit" method="post" autocomplete="off">
+    <div class="form-box">
+        <div class="form-stuff">
+          <div class="user-box">
+            <div class="headerf">
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{title}}"
+                required="true"
+              />
+            </div>
+            <br />
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value="{{description}}"
+              required="true"
+            />
+            <br />
+            <textarea type="text" id="text" name="text" required="true">
+{{text}}</textarea
+            >
+            <input
+              type="text"
+              id="urlTag"
+              name="urlTag"
+              value="{{urlTag}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value="{{tags}}"
+              required="true"
+            />
+          </div>
+        </div>
         <br />
-        <label for="question2">Question 2:</label>
-        <input type="text" id="Q2" name="Q2" value="{{Q2}}" required="true" />
-        <input
-          type="text"
-          id="A21"
-          name="A21"
-          value="{{A21}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A22"
-          name="A22"
-          value="{{A22}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A23"
-          name="A23"
-          value="{{A23}}"
-          required="true"
-        />
-        <select name="A2c" class="form-control" id="A2c">
-          <option
-            value="0"
-            label="Select the correct answer..."
-            selected="selected"
-          >
-            Select the correct answer...
-          </option>
-          <option value="A21" label="Answer 1">Answer 1</option>
-          <option value="A22" label="Answer 2">Answer 2</option>
-          <option value="A23" label="Answer 3">Answer 3</option>
-        </select>
-        <br />
-        <label for="question3">Question 3:</label>
-        <input type="text" id="Q3" name="Q3" value="{{Q3}}" required="true" />
-        <input
-          type="text"
-          id="A31"
-          name="A31"
-          value="{{A31}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A32"
-          name="A32"
-          value="{{A32}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A33"
-          name="A33"
-          value="{{A33}}"
-          required="true"
-        />
-        <select name="A3c" class="form-control" id="A3c">
-          <option
-            value="0"
-            label="Select the correct answer..."
-            selected="selected"
-          >
-            Select the correct answer...
-          </option>
-          <option value="A31" label="Answer 1">Answer 1</option>
-          <option value="A32" label="Answer 2">Answer 2</option>
-          <option value="A33" label="Answer 3">Answer 3</option>
-        </select>
-        <br />
-        <label for="question4">Question 4:</label>
-        <input type="text" id="Q4" name="Q4" value="{{Q4}}" required="true" />
-        <input type="text" id="A41" name="A41" value="{A41}" required="true" />
-        <input type="text" id="A42" name="A42" value="{A42}" required="true" />
-        <input type="text" id="A43" name="A43" value="{A43}" required="true" />
-        <select name="A4c" class="form-control" id="A4c">
-          <option
-            value="0"
-            label="Select the correct answer..."
-            selected="selected"
-          >
-            Select the correct answer...
-          </option>
-          <option value="A41" label="Answer 1">Answer 1</option>
-          <option value="A42" label="Answer 2">Answer 2</option>
-          <option value="A43" label="Answer 3">Answer 3</option>
-        </select>
-        <br />
-        <label for="question5">Question 5:</label>
-        <input type="text" id="Q5" name="Q5" value="{{Q5}}" required="true" />
-        <input
-          type="text"
-          id="A51"
-          name="A51"
-          value="{{A51}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A52"
-          name="A52"
-          value="{{A52}}"
-          required="true"
-        />
-        <input
-          type="text"
-          id="A53"
-          name="A53"
-          value="{{A53}}"
-          required="true"
-        />
-        <select name="A5c" class="form-control" id="A5c">
-          <option
-            value="0"
-            label="Select the correct answer..."
-            selected="selected"
-          >
-            Select the correct answer...
-          </option>
-          <option value="A51" label="Answer 1">Answer 1</option>
-          <option value="A52" label="Answer 2">Answer 2</option>
-          <option value="A53" label="Answer 3">Answer 3</option>
-        </select>
-        <button type="submit">Submit lesson</button>
-      </div>
-    </form>
-    <!-- <script src="../../public/answers2.js"></script> -->
+        <div class="quiz-container">
+          <div class="user-box">
+            <label for="question1">Question 1:</label>
+            <input
+              type="text"
+              id="Q1"
+              name="Q1"
+              value="{{Q1}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A11"
+              name="A11"
+              value="{{A11}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A12"
+              name="A12"
+              value="{{A12}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A13"
+              name="A13"
+              value="{{A13}}"
+              required="true"
+            />
+            <select name="A1c" class="form-control" id="A1c">
+              <option
+                value="0"
+                label="Select the correct answer..."
+                selected="selected"
+              >
+                Select the correct answer...
+              </option>
+              <option value="A11" label="Answer 1">Answer 1</option>
+              <option value="A12" label="Answer 2">Answer 2</option>
+              <option value="A13" label="Answer 3">Answer 3</option>
+            </select>
+            <br />
+            <label for="question2">Question 2:</label>
+            <input
+              type="text"
+              id="Q2"
+              name="Q2"
+              value="{{Q2}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A21"
+              name="A21"
+              value="{{A21}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A22"
+              name="A22"
+              value="{{A22}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A23"
+              name="A23"
+              value="{{A23}}"
+              required="true"
+            />
+            <select name="A2c" class="form-control" id="A2c">
+              <option
+                value="0"
+                label="Select the correct answer..."
+                selected="selected"
+              >
+                Select the correct answer...
+              </option>
+              <option value="A21" label="Answer 1">Answer 1</option>
+              <option value="A22" label="Answer 2">Answer 2</option>
+              <option value="A23" label="Answer 3">Answer 3</option>
+            </select>
+            <br />
+            <label for="question3">Question 3:</label>
+            <input
+              type="text"
+              id="Q3"
+              name="Q3"
+              value="{{Q3}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A31"
+              name="A31"
+              value="{{A31}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A32"
+              name="A32"
+              value="{{A32}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A33"
+              name="A33"
+              value="{{A33}}"
+              required="true"
+            />
+            <select name="A3c" class="form-control" id="A3c">
+              <option
+                value="0"
+                label="Select the correct answer..."
+                selected="selected"
+              >
+                Select the correct answer...
+              </option>
+              <option value="A31" label="Answer 1">Answer 1</option>
+              <option value="A32" label="Answer 2">Answer 2</option>
+              <option value="A33" label="Answer 3">Answer 3</option>
+            </select>
+            <br />
+            <label for="question4">Question 4:</label>
+            <input
+              type="text"
+              id="Q4"
+              name="Q4"
+              value="{{Q4}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A41"
+              name="A41"
+              value="{A41}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A42"
+              name="A42"
+              value="{A42}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A43"
+              name="A43"
+              value="{A43}"
+              required="true"
+            />
+            <select name="A4c" class="form-control" id="A4c">
+              <option
+                value="0"
+                label="Select the correct answer..."
+                selected="selected"
+              >
+                Select the correct answer...
+              </option>
+              <option value="A41" label="Answer 1">Answer 1</option>
+              <option value="A42" label="Answer 2">Answer 2</option>
+              <option value="A43" label="Answer 3">Answer 3</option>
+            </select>
+            <br />
+            <label for="question5">Question 5:</label>
+            <input
+              type="text"
+              id="Q5"
+              name="Q5"
+              value="{{Q5}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A51"
+              name="A51"
+              value="{{A51}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A52"
+              name="A52"
+              value="{{A52}}"
+              required="true"
+            />
+            <input
+              type="text"
+              id="A53"
+              name="A53"
+              value="{{A53}}"
+              required="true"
+            />
+            <select name="A5c" class="form-control" id="A5c">
+              <option
+                value="0"
+                label="Select the correct answer..."
+                selected="selected"
+              >
+                Select the correct answer...
+              </option>
+              <option value="A51" label="Answer 1">Answer 1</option>
+              <option value="A52" label="Answer 2">Answer 2</option>
+              <option value="A53" label="Answer 3">Answer 3</option>
+            </select>
+          </div>
+          <button type="submit">Save lesson</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

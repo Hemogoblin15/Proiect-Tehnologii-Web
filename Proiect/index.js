@@ -81,6 +81,16 @@ const server = http.createServer((req, res) => {
           learnController.lessonAddGet(req, res);
         });
         break;
+      case method === "POST" && url.endsWith("/edit") && url.startsWith("/learn/"):
+        requireAuthentication(req, res, () => {
+          learnController.lessonEditPost(req, res); 
+        });
+        break;
+      case method === "GET" && url.endsWith("/edit") && url.startsWith("/learn/"):
+        requireAuthentication(req, res, () => {
+          learnController.lessonEditGet(req, res);
+        });
+        break;
       case method === "GET" && url.startsWith("/learn/"):
         requireAuthentication(req, res, () => {
           learnController.lessonGet(req, res);
