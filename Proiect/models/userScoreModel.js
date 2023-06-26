@@ -24,8 +24,10 @@ class UserScore {
         const db = getDb();
         const collection = db.collection("userScores");
         const userScore = await collection.findOne({ userId, lessonId });
+        if (userScore) {
         score = score + userScore.score;
         return score;
+        }
     }
 
     static async updateScore(scoreId, newScore) {
