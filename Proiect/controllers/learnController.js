@@ -13,47 +13,70 @@ learnController.lessonPost = async (req, res) => {
   const lesson = await Lesson.findByURLTag(lessonURL);
   let score = 0;
   let body = "";
-    req.on("data", (chunk) => {
-      body += chunk.toString();
-    });
+
+  req.on("data", (chunk) => {
+    body += chunk.toString();
+    console.log(body);
+  });
+
   req.on("end", async () => {
-    const { A1c, A2c, A3c, A4c, A5c } = parseQuizData(body);
-    if (A1c == lesson.A1c)
-      score = score +1;
-    if (A2c == lesson.A2c)
-    score = score +1;
-    if (A3c == lesson.A3c)
-    score = score +1;
-    if (A4c == lesson.A4c)
-    score = score +1;
-    if (A5c == lesson.A5c)
-      score = score +1;
+    const { Q1, Q2, Q3, Q4, Q5 } = parseFormData(body);
+    console.log(Q1, Q2, Q3, Q4, Q5);
+    console.log(lesson.A1c, lesson.A2c, lesson.A3c, lesson.A4c, lesson.A5c);
+    if (Q1 == lesson.A1c)
+      score = score + 1;
+    if (Q2 == lesson.A2c)
+      score = score + 1;
+    if (Q3 == lesson.A3c)
+      score = score + 1;
+    if (Q4 == lesson.A4c)
+      score = score + 1;
+    if (Q5 == lesson.A5c)
+      score = score + 1;
+
     const findUserScore = await UserScore.findScore(user._id, lesson._id);
+
     if (findUserScore) {
       if (score > findUserScore.score)
         UserScore.updateScore(findUserScore._id, score);
-      res.statusCode = 302;
-      Utils.redirectTo("/learn", res);
+
+      const alertMessage = `Your score: ${score}`;
+      const script = `<script>alert("${alertMessage}"); window.location.href = "/learn";</script>`;
+      res.setHeader("Content-Type", "text/html");
+      res.end(script);
     } else {
       const userScore = new UserScore(user._id, lesson._id, score);
       userScore.save();
-      res.statusCode = 302;
-      Utils.redirectTo("/learn", res);
+
+      const alertMessage = `Your score: ${score}`;
+      const script = `<script>alert("${alertMessage}"); window.location.href = "/learn";</script>`;
+      res.setHeader("Content-Type", "text/html");
+      res.end(script);
     }
-    
-  })
-}
+  });
+};
 
 
 learnController.learnGet = async (req, res) => {
-  let user = await User.findById(req.locals.userId);
-  let lessons = await Lesson.findAll();
-  lessons = lessons?.map((lesson) =>
-    lessonComponent
-      .replace("{{title}}", parseDbData(lesson.title))
-      .replace("{{description}}", parseDbData(lesson.description))
-      .replace("{{urlTag}}", lesson.urlTag)
-  );
+  try {
+    let user = await User.findById(req.locals.userId);
+    let lessons = await Lesson.findAll();
+    lessons = await Promise.all(lessons?.map(async (lesson) => {
+      const userScore = await UserScore.findScore(user._id, lesson._id);
+      if(userScore) {
+      return lessonComponent
+        .replace("{{title}}", parseDbData(lesson.title))
+        .replace("{{description}}", parseDbData(lesson.description))
+        .replace("{{urlTag}}", lesson.urlTag)
+        .replace("{{score}}", "Your score for this lesson: " + userScore.score);
+      } else {
+      return lessonComponent
+        .replace("{{title}}", parseDbData(lesson.title))
+        .replace("{{description}}", parseDbData(lesson.description))
+        .replace("{{urlTag}}", lesson.urlTag)
+        .replace("{{score}}", "");
+      }
+    }));
   fs.readFile("./views/learn.html", "utf8", (err, data) => {
     if (user === null) {
       console.error("Error reading learn.html", err);
@@ -93,6 +116,11 @@ learnController.learnGet = async (req, res) => {
       res.end(learnPage);
     }
   });
+  } catch (error) {
+    console.error("Error retrieving user or lessons", error);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
+  }
 };
 
 learnController.lessonAddGet = async (req, res) => {
@@ -445,17 +473,5 @@ function parseDbData(dbData) {
   return data;
 }
 
-function parseQuizData(quizData) {
-  let data = {};
-  const quizFields = quizData.split("&")
-
-  for (let i = 1 ; i < quizFields.length+1; i++) {
-    const key = "A" + i.toString() + "c";
-    const value = quizFields[i-1].split("=")[0];
-    data[key] = value;
-  }
-  return data;
-}
 
 module.exports = learnController;
-// A11=on&A21=on&A31=on&A42=on&A51=on

@@ -4,5 +4,8 @@ let lessonComponent = `<div class="lesson">
         {{description}}
         </p>
         <a href="/learn/{{urlTag}}">Start Lesson</a>
+        <p>
+        {{score}}
+        </p>
         </div>`;
 module.exports = lessonComponent;
