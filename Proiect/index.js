@@ -137,6 +137,11 @@ const server = http.createServer((req, res) => {
           apiController.leaderboardGet(req, res);
         });
           break;
+      case method === "GET" && url.startsWith("/api/lesson/"):
+        requireAuthentication(req, res, async () => {
+          apiController.lessonGet(req, res);
+        });
+              break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);
         break;

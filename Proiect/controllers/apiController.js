@@ -71,4 +71,10 @@ apiController.userGet = async (req, res) => {
   res.end(JSON.stringify(user));
 }
 
+apiController.lessonGet = async (req, res) => {
+  const lessonURL = req.url.split('/')[3];
+  const lesson = await Lesson.findByURLTag(lessonURL);
+  res.end(JSON.stringify(lesson));
+}
+
 module.exports = apiController;
