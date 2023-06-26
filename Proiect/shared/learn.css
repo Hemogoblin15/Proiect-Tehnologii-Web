@@ -4,6 +4,7 @@ body {
   background-color: #633bbc;
   background: black;
   background-repeat: no-repeat;
+  align-items: center;
 }
 
 /* Header styles */
@@ -41,26 +42,6 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-}
-
-/* ProgressBar + Title */
-
-.header-progressbar {
-  font-size: 40px;
-}
-
-#myProgress {
-  width: 100%;
-  background-color: white;
-}
-
-#myBar {
-  background-color: #633bbc;
-  width: 10%;
-  height: 30px;
-  text-align: center; /* To center it horizontally (if you want) */
-  line-height: 30px; /* To center it vertically */
-  color: white;
 }
 
 /* Lesson styles */

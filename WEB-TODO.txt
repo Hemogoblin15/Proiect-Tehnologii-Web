@@ -14,3 +14,8 @@ INFO - thresholds pentru trecere de la o lectie la alta (lectiile anterioare adu
 
 TODO: 
 	recomandari in functie de ocupatie.
+
+2. Functie calculat punctaj --> baza de date
+3. Leaderboard prin RSS 
+
+

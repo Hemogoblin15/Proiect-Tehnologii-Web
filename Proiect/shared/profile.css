@@ -6,10 +6,12 @@ body {
   background-repeat: no-repeat;
 }
 
-
 .container {
-  max-width: 960px;
-  margin: auto;
+  display: inline-block;
+}
+
+.profile-container {
+  display: inline-block;
 }
 
 .separator {
@@ -22,17 +24,19 @@ body {
   color: white;
   font-size: 32px;
   margin-top: 20px;
+  padding: 10px;
 }
 
 .user-details {
   list-style-type: none;
-  padding: 0;
+  padding: 20px;
   margin-top: 20px;
 }
 
 .user-details li {
   color: white;
   margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .user-details li::before {
@@ -61,6 +65,14 @@ body {
   }
 
   .user-details {
-    font-size: 14px;
+    font-size: 18px;
   }
+}
+
+.card {
+  width: auto;
+  height: auto;
+  border-radius: 30px;
+  background: #212121;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
 }

@@ -45,32 +45,40 @@
               required="true"
             />
           </div>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value="{{description}}"
-            required="true"
-          />
-          <textarea type="text" id="text" name="text" required="true">{{text}}</textarea
-          >
-          <input
-            type="text"
-            id="urlTag"
-            name="urlTag"
-            value="{{urlTag}}"
-            required="true"
-          />
-          <input
-            type="text"
-            id="tags"
-            name="tags"
-            value="{{tags}}"
-            required="true"
-          />
-        </div>
+          <div class="description">
+            <input
+              type="text"
+              id="description"
+              name="description"
+              value="{{description}}"
+              required="true"
+            />
+          </div>
+          <div class="lessonText">
+            <textarea type="text" id="text" name="text" required="true">
+{{text}}></textarea
+            >
+          </div>
+          <div class="urlTag">
+            <input
+              type="text"
+              id="urlTag"
+              name="urlTag"
+              value="{{urlTag}}"
+              required="true"
+            />
+          </div>
+          <div class="tags">
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value="{{tags}}"
+              required="true"
+            />
+          </div>
         <br />
-        <div class="user-box">
+        <!-- <div class="user-box"> -->
           <label for="Q1">Question 1:</label>
           <input type="text" id="Q1" name="Q1" value="{{Q1}}" required="true" />
           <input

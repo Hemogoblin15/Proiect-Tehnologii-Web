@@ -5,6 +5,8 @@ body {
   padding: 0;
   background-color: black;
   color: white;
+  align-items: center;
+  justify-content: center;
 }
 
 .learn {
@@ -57,7 +59,7 @@ form {
 }
 
 .form-box {
-  margin-top: 100px;
+  margin-top: 1300px;
   width: 60%;
   height: auto;
   padding: 40px;
@@ -68,6 +70,11 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Add this line */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-box .user-box {
@@ -173,54 +180,50 @@ textarea {
 }
 
 button {
+  --color: #560bad;
+  font-family: inherit;
   display: inline-block;
-  width: 150px;
-  height: 50px;
-  border-radius: 10px;
-  border: 1px solid #03045e;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
   overflow: hidden;
-  transition: all 0.5s ease-in;
+  border: 2px solid var(--color);
+  transition: color 0.5s;
   z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
 }
 
-button::before,
-button::after {
+button:before {
   content: "";
   position: absolute;
-  top: 0;
-  width: 0;
-  height: 100%;
-  transform: skew(15deg);
-  transition: all 0.5s;
-  overflow: hidden;
   z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
 }
 
-button::before {
-  left: -10px;
-  background: #240046;
+button:hover {
+  color: #fff;
 }
 
-button::after {
-  right: -10px;
-  background: #5a189a;
+button:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
 }
 
-button:hover::before,
-button:hover::after {
-  width: 58%;
+button:hover:before {
+  top: -30px;
+  left: -30px;
 }
 
-button:hover span {
-  color: #e0aaff;
-  transition: 0.3s;
-}
-
-button span {
-  color: #03045e;
-  font-size: 18px;
-  transition: all 0.3s ease-in;
+button:active:before {
+  background: #3a0ca3;
+  transition: background 0s;
 }
