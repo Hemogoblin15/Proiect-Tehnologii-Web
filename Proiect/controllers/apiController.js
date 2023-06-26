@@ -60,7 +60,7 @@ apiController.lessonsRecGet = async (req, res) => {
   const lessons = await Lesson.findLessons(user.occupation);
   const updatedLessons = await Promise.all(lessons.map(async (lesson) => {
     const userScore = await UserScore.getScore(user._id, lesson._id);
-    const newLesson = Object.assign({}, lesson, { score: userScore });
+    const newLesson = Object.assign({}, lesson, { score: userScore || 0});
     return newLesson;
   }));
   res.end(JSON.stringify(updatedLessons));  
