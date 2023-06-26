@@ -19,6 +19,15 @@ class UserScore {
         return userScore;
     }
 
+    static async getScore(userId, lessonId) {
+        let score = 0;
+        const db = getDb();
+        const collection = db.collection("userScores");
+        const userScore = await collection.findOne({ userId, lessonId });
+        score = score + userScore.score;
+        return score;
+    }
+
     static async updateScore(scoreId, newScore) {
         const db = getDb();
         await db.collection("userScores").updateOne({ _id : scoreId }, { $set : { score : newScore}});

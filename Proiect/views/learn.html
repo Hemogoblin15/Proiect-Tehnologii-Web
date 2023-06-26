@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../shared/learn.css" />
     <link rel="stylesheet" href="../shared/navbar.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>MaMa! - Lessons</title>
   </head>
   <body>
@@ -32,9 +33,73 @@
     <div class="container">
       <h2>Our lessons</h2>
       <div class="lesson-list">
-        {{each-lesson}}  
+        
       </div>
     </div>
-      {{addButton}}
-  </body>
+    <div class="button-container">
+      <script>
+          function redirectToAdd() {
+            window.location.href = "/learn/add";
+        }
+      </script>
+    </div>
+<script>
+  $(document).ready(function() {
+  const lessonListContainer = $('.lesson-list');
+  const buttonContainer = $('.button-container');
+
+        function addButton() {
+          $.ajax({
+            url: '/api/user',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+              let buttonHTML = '';
+              if (response.admin) {
+                buttonHTML = `
+                  <div class="add-button">
+                    <button onclick="redirectToAdd()">
+                      <span> Add lesson </span>
+                    </button>
+                  </div>
+                `;
+              }
+              buttonContainer.html(buttonHTML);
+            },
+            error: function(error) {
+              console.error('Error fetching user:', error);
+            }
+          });
+        }
+
+  function fetchLessons() {
+    $.ajax({
+      url: '/api/lessons',
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        const lessonsHTML = response.map(lesson => {
+          return `
+            <div class="lesson">
+              <h3>${lesson.title}</h3>
+              <p>${lesson.description}</p>
+              <a href="/learn/${lesson.urlTag}">Start Lesson</a>
+              <p>Your score for this lesson: ${lesson.score}</p>
+            </div>
+          `;
+        });
+        
+        lessonListContainer.html(lessonsHTML.join(''));
+      },
+      error: function(error) {
+        console.error('Error fetching lessons:', error);
+      }
+    });
+  }
+  
+  addButton();
+  fetchLessons();
+});
+</script>
+    </body>
 </html>

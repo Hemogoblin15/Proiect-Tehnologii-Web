@@ -1,15 +1,10 @@
+const Utils = require("../utils");
 const rss = require("rss");
 const User = require("../models/userModel");
 const UserScore = require("../models/userScoreModel");
+const Lesson = require("../models/lessonModel");
 
 let apiController = {};
-
-const leaderboard = [
-    { rank: 1, name: 'John Doe', score: 100 },
-    { rank: 2, name: 'Jane Smith', score: 90 },
-    { rank: 3, name: 'Alice Johnson', score: 85 },
-    // Add more entries as needed
-  ];
 
 apiController.leaderboardGet = async (req, res) => {
   const feed = new rss({
@@ -48,5 +43,32 @@ apiController.leaderboardGet = async (req, res) => {
     res.setHeader('Content-Type', 'application/rss+xml');
     res.end(feed.xml());
 };
+
+apiController.lessonsGet = async (req, res) => {
+  const user = await User.findById(req.locals.userId);
+  const lessons = await Lesson.findAll();
+  const updatedLessons = await Promise.all(lessons.map(async (lesson) => {
+    const userScore = await UserScore.getScore(user._id, lesson._id);
+    const newLesson = Object.assign({}, lesson, { score: userScore });
+    return newLesson;
+  }));
+  res.end(JSON.stringify(updatedLessons));  
+};
+
+apiController.lessonsRecGet = async (req, res) => {
+  const user = await User.findById(req.locals.userId);
+  const lessons = await Lesson.findLessons(user.occupation);
+  const updatedLessons = await Promise.all(lessons.map(async (lesson) => {
+    const userScore = await UserScore.getScore(user._id, lesson._id);
+    const newLesson = Object.assign({}, lesson, { score: userScore });
+    return newLesson;
+  }));
+  res.end(JSON.stringify(updatedLessons));  
+};
+
+apiController.userGet = async (req, res) => {
+  const user = await User.findById(req.locals.userId);
+  res.end(JSON.stringify(user));
+}
 
 module.exports = apiController;

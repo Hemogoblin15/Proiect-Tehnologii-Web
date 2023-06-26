@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="../shared/profile.css" />
     <link rel="stylesheet" href="../shared/navbar.css" />
     <link rel="stylesheet" href="../shared/learn.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -30,23 +31,72 @@
           </div>
         </ul>
       </nav>
-    <main class="profile-container container main-container">
-      <div class="card">
-      <!-- <div class="separator"></div> -->
-        <div class="name">{{name}}</div>
-        <div class="separator"></div>
-        <ul class="user-details">
-          <li class="occupation">{{occupation}}</li>
-          <li class="country">{{country}}</li>
-        </ul>
+      <main class="profile-container container main-container">
+      
+      </main>
+      <div class="container">
+        <h2>Recommended lessons</h2>
+        <div class="lesson-list">
+        </div>
       </div>
-    </div>
-    </main>
-    <div class="container">
-      <h2>Recommended lessons</h2>
-      <div class="lesson-list">
-        {{each-lesson}}
-      </div>
-    </div>
-  </body>
+      <script>
+        $(document).ready(function() {
+          const lessonListContainer = $('.lesson-list');
+          const userContainer = $('.profile-container.main-container');
+          
+          function fetchUser() {
+            $.ajax({
+              url: '/api/user',
+              method: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                const userHTML = `
+                  <div class="card">
+                    <div class="name">${response.name}</div>
+                    <div class="separator"></div>
+                    <ul class="user-details">
+                      <li class="occupation">${response.occupation}</li>
+                      <li class="country">${response.country}</li>
+                    </ul>
+                  </div>
+                `;
+                
+                userContainer.html(userHTML);
+              },
+              error: function(error) {
+                console.error('Error fetching user:', error);
+              }
+            });
+          }
+    
+          function fetchLessons() {
+            $.ajax({
+              url: '/api/lessons/suggestions',
+              method: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                const lessonsHTML = response.map(lesson => {
+                  return `
+                    <div class="lesson">
+                      <h3>${lesson.title}</h3>
+                      <p>${lesson.description}</p>
+                      <a href="/learn/${lesson.urlTag}">Start Lesson</a>
+                      <p>Your score for this lesson: ${lesson.score}</p>
+                    </div>
+                  `;
+                });
+    
+                lessonListContainer.html(lessonsHTML.join(''));
+              },
+              error: function(error) {
+                console.error('Error fetching lessons:', error);
+              }
+            });
+          }
+          
+          fetchUser();
+          fetchLessons();
+        });
+      </script>
+    </body>
   </html>

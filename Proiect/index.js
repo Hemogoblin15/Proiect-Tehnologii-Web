@@ -117,8 +117,25 @@ const server = http.createServer((req, res) => {
           profileController.profileGet(req, res);
         });
         break;
-      case method === "GET" && url === "/api/leaderboard":
+      case method === "GET" && url === "/api/lessons":
+        requireAuthentication(req, res, async () => {
+          apiController.lessonsGet(req, res);
+        });
+          break;
+        case method === "GET" && url === "/api/lessons/suggestions":
+        requireAuthentication(req, res, async () => {
+          apiController.lessonsRecGet(req, res);
+        });
+        break;
+        case method === "GET" && url === "/api/user":
+        requireAuthentication(req, res, async () => {
+          apiController.userGet(req, res);
+        });
+          break;
+        case method === "GET" && url === "/api/leaderboard":
+        requireAuthentication(req, res, async () => {
           apiController.leaderboardGet(req, res);
+        });
           break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);

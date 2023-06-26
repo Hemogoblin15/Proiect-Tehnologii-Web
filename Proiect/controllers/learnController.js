@@ -3,7 +3,6 @@ const fs = require("fs");
 const User = require("../models/userModel");
 const Lesson = require("../models/lessonModel");
 const UserScore = require("../models/userScoreModel");
-const lessonComponent = require("../views/components/lessonComponent");
 
 let learnController = {};
 
@@ -55,69 +54,7 @@ learnController.lessonPost = async (req, res) => {
 
 
 learnController.learnGet = async (req, res) => {
-  try {
-    let user = await User.findById(req.locals.userId);
-    let lessons = await Lesson.findAll();
-    lessons = await Promise.all(lessons?.map(async (lesson) => {
-      const userScore = await UserScore.findScore(user._id, lesson._id);
-      if(userScore) {
-      return lessonComponent
-        .replace("{{title}}", parseDbData(lesson.title))
-        .replace("{{description}}", parseDbData(lesson.description))
-        .replace("{{urlTag}}", lesson.urlTag)
-        .replace("{{score}}", "Your score for this lesson: " + userScore.score);
-      } else {
-      return lessonComponent
-        .replace("{{title}}", parseDbData(lesson.title))
-        .replace("{{description}}", parseDbData(lesson.description))
-        .replace("{{urlTag}}", lesson.urlTag)
-        .replace("{{score}}", "");
-      }
-    }));
-  fs.readFile("./views/learn.html", "utf8", (err, data) => {
-    if (user === null) {
-      console.error("Error reading learn.html", err);
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("Internal Server Error");
-    } else if (user.admin) {
-      let learnPage = data
-        .replace(
-          "{{addButton}}",
-          `
-        <div class="add-button">
-        <script>
-        function redirectToAdd() {
-            window.location.href = "/learn/add";
-        }
-        </script>
-        <button onclick="redirectToAdd()">
-        <span> Add lesson
-        </span>
-        </button>
-        </div>`
-        )
-        .replace(
-          "{{each-lesson}}",
-          lessons?.reduce((acc, lesson) => acc + lesson, "")
-        );
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(learnPage);
-    } else {
-      let learnPage = data
-      .replace(
-        "{{each-lesson}}",
-        lessons?.reduce((acc, lesson) => acc + lesson, "")
-      )
-      .replace("{{addButton}}", "");
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(learnPage);
-    }
-  });
-  } catch (error) {
-    console.error("Error retrieving user or lessons", error);
-    res.writeHead(500, { "Content-Type": "text/plain" });
-    res.end("Internal Server Error");
-  }
+ Utils.sendResources(req, res, "views/learn.html");
 };
 
 learnController.lessonAddGet = async (req, res) => {
@@ -447,7 +384,7 @@ function parseFormData(formData) {
 
   for (let i = 0; i < formFields.length; i++) {
     const [key, value] = formFields[i].split("=");
-    data[key] = decodeURIComponent(value);
+    data[key] = parseDbData(decodeURIComponent(value));
   }
 
   return data;

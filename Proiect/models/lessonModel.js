@@ -125,7 +125,7 @@ class Lesson {
       const db = getDb();
       db.collection("lessons").updateOne({ _id : id }, { $set : { urlTag : urlTagn } } );
       db.collection("lessons").updateOne({ _id : id }, { $set : { title : titlen} } );
-      db.collection("lessons").updateOne({ _id : id }, { $set : { descriptionn : descriptionn} } );
+      db.collection("lessons").updateOne({ _id : id }, { $set : { description : descriptionn} } );
       db.collection("lessons").updateOne({ _id : id }, { $set : { text : textn} } );
       db.collection("lessons").updateOne({ _id : id }, { $set : { tags : tagsn} } );
       db.collection("lessons").updateOne({ _id : id }, { $set : { Q1 : Q1n} } );
