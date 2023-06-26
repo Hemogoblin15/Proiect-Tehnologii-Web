@@ -16,13 +16,10 @@ learnController.lessonPost = async (req, res) => {
 
   req.on("data", (chunk) => {
     body += chunk.toString();
-    console.log(body);
   });
 
   req.on("end", async () => {
     const { Q1, Q2, Q3, Q4, Q5 } = parseFormData(body);
-    console.log(Q1, Q2, Q3, Q4, Q5);
-    console.log(lesson.A1c, lesson.A2c, lesson.A3c, lesson.A4c, lesson.A5c);
     if (Q1 == lesson.A1c)
       score = score + 1;
     if (Q2 == lesson.A2c)
@@ -284,7 +281,6 @@ learnController.lessonAddPost = (req, res) => {
       A53,
       A5c,
     } = parseFormData(body);
-    console.log("\n\n %s", Q1);
     const findLesson = await Lesson.findByURLTag(urlTag);
     if (findLesson) {
       res.statusCode = 401;
@@ -368,12 +364,10 @@ learnController.lessonEditGet = async (req, res) => {
 
 learnController.lessonEditPost = (req, res) => {
   const lessonURL = req.url.split("/")[2];
-  console.log(req.url);
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
   });
-  console.log(body);
   req.on("end", async () => {
     const {
       title,
@@ -407,9 +401,7 @@ learnController.lessonEditPost = (req, res) => {
       A53,
       A5c,
     } = parseFormData(body);
-    console.log(lessonURL);
     const findLesson = await Lesson.findByURLTag(lessonURL);
-    console.log(lessonURL);
     await Lesson.editLesson(
       findLesson._id,
       urlTag,

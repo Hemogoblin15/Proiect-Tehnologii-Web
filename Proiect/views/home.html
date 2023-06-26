@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="../shared/home.css" />
     <link rel="stylesheet" href="../shared/navbar.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Manners Matter!</title>
   </head>
-
   <body>
     <nav class="navbar">
       <div class="logo">
@@ -35,38 +31,19 @@
         </div>
       </ul>
     </nav>
-
     <div class="hero-image">
       <div class="hero-text">
         <h1 style="font-size: 60px">Manners Matter!</h1>
         <p style="font-size: 40px">
-          Manners Matter! provides support for learning norms and rules of
-          behavior (etiquette) on the internet.
+          Manners Matter! provides support for learning norms and rules of behavior (etiquette) on the internet.
         </p>
       </div>
     </div>
-    <!-- <div class="siteDescription">
-        <p style="font-size: 40px">
-          <b>Manners Matter!</b>
-        </p>
-        <p>
-          We provide support for learning and recommending norms and rules of
-          behavior (etiquette) on the internet.
-        </p> -->
     <div class="leaderboardContainer">
       <div class="leaderboard">
         <h2>Leaderboard</h2>
-        <ol>
-          <li>Player 1 - 100 points</li>
-          <li>Player 2 - 90 points</li>
-          <li>Player 3 - 80 points</li>
-          <li>Player 4 - 70 points</li>
-          <li>Player 5 - 60 points</li>
-          <li>Player 6 - 50 points</li>
-          <li>Player 7 - 40 points</li>
-          <li>Player 8 - 30 points</li>
-          <li>Player 9 - 20 points</li>
-          <li>Player 10 - 10 points</li>
+        <ol id="leaderboard-list">
+          <li>Loading leaderboard..</li>
         </ol>
       </div>
       <div class="leaderboard-p">
@@ -76,5 +53,29 @@
         <img src="../shared/imagini/Learn2.png" />
       </div>
     </div>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: '/api/leaderboard',
+          method: 'GET',
+          dataType: 'xml',
+          success: function(data) {
+            console.log(data);
+
+            const items = $(data).find('item');
+            let leaderboardHTML = '';
+            items.each(function(index) {
+              const title = $(this).find('title').text();
+              const description = $(this).find('description').text();
+              leaderboardHTML += `<li>${title} - ${description}</li>`;
+            });
+            $('#leaderboard-list').html(leaderboardHTML);
+          },
+          error: function(error) {
+            console.error('Error:', error);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

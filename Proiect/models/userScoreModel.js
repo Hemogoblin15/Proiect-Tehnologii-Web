@@ -23,6 +23,16 @@ class UserScore {
         const db = getDb();
         await db.collection("userScores").updateOne({ _id : scoreId }, { $set : { score : newScore}});
     }
+
+    static async getUserScore(userId) {
+        const db = getDb();
+        let score = 0;
+        const userScores = await db.collection("userScores").find( {userId} ).toArray();
+        userScores.forEach((userScore) => {
+            score += userScore.score;
+        });
+        return score;
+    }
 }
 
 module.exports = UserScore;

@@ -13,6 +13,7 @@ const homeController = require("./controllers/homeController");
 const helpController = require("./controllers/helpController");
 const learnController = require("./controllers/learnController");
 const profileController = require("./controllers/profileController");
+const apiController = require("./controllers/apiController");
 const Utils = require("./utils");
 
 const sessionMiddleware = clientSessions({
@@ -116,6 +117,9 @@ const server = http.createServer((req, res) => {
           profileController.profileGet(req, res);
         });
         break;
+      case method === "GET" && url === "/api/leaderboard":
+          apiController.leaderboardGet(req, res);
+          break;
       case method === "GET" || method === "HEAD":
         Utils.sendResources(req, res, url);
         break;
