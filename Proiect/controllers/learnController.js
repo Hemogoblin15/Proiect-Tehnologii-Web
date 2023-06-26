@@ -2,9 +2,48 @@ const Utils = require("../utils");
 const fs = require("fs");
 const User = require("../models/userModel");
 const Lesson = require("../models/lessonModel");
+const UserScore = require("../models/userScoreModel");
 const lessonComponent = require("../views/components/lessonComponent");
 
 let learnController = {};
+
+learnController.lessonPost = async (req, res) => {
+  const user = await User.findById(req.locals.userId);
+  const lessonURL = req.url.split("/")[2];
+  const lesson = await Lesson.findByURLTag(lessonURL);
+  let score = 0;
+  let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+  req.on("end", async () => {
+    const { A1c, A2c, A3c, A4c, A5c } = parseQuizData(body);
+    if (A1c == lesson.A1c)
+      score = score +1;
+    if (A2c == lesson.A2c)
+    score = score +1;
+    if (A3c == lesson.A3c)
+    score = score +1;
+    if (A4c == lesson.A4c)
+    score = score +1;
+    if (A5c == lesson.A5c)
+      score = score +1;
+    const findUserScore = await UserScore.findScore(user._id, lesson._id);
+    if (findUserScore) {
+      if (score > findUserScore.score)
+        UserScore.updateScore(findUserScore._id, score);
+      res.statusCode = 302;
+      Utils.redirectTo("/learn", res);
+    } else {
+      const userScore = new UserScore(user._id, lesson._id, score);
+      userScore.save();
+      res.statusCode = 302;
+      Utils.redirectTo("/learn", res);
+    }
+    
+  })
+}
+
 
 learnController.learnGet = async (req, res) => {
   let user = await User.findById(req.locals.userId);
@@ -44,7 +83,12 @@ learnController.learnGet = async (req, res) => {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(learnPage);
     } else {
-      let learnPage = data.replace("{{addButton}}", "");
+      let learnPage = data
+      .replace(
+        "{{each-lesson}}",
+        lessons?.reduce((acc, lesson) => acc + lesson, "")
+      )
+      .replace("{{addButton}}", "");
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(learnPage);
     }
@@ -68,6 +112,7 @@ learnController.lessonGet = async (req, res) => {
         .replace("{{name}}", parseDbData(lesson.title))
         .replace("{{title}}", parseDbData(lesson.title))
         .replace("{{text}}", parseDbData(lesson.text))
+        .replace("{{urlTag}}" , parseDbData(lesson.urlTag))
         .replace("{{Q1}}", parseDbData(lesson.Q1))
         .replace("{{A11}}", parseDbData(lesson.A11))
         .replace("{{A12}}", parseDbData(lesson.A12))
@@ -99,6 +144,7 @@ learnController.lessonGet = async (req, res) => {
         .replace("{{name}}", parseDbData(lesson.title))
         .replace("{{title}}", parseDbData(lesson.title))
         .replace("{{text}}", parseDbData(lesson.text))
+        .replace("{{urlTag}}" , parseDbData(lesson.urlTag))
         .replace("{{Q1}}", parseDbData(lesson.Q1))
         .replace("{{A11}}", parseDbData(lesson.A11))
         .replace("{{A12}}", parseDbData(lesson.A12))
@@ -176,7 +222,6 @@ learnController.lessonAddPost = (req, res) => {
   let body = "";
   req.on("data", (chunk) => {
     body += chunk;
-    console.log(body);
   });
   req.on("end", async () => {
     const {
@@ -400,4 +445,17 @@ function parseDbData(dbData) {
   return data;
 }
 
+function parseQuizData(quizData) {
+  let data = {};
+  const quizFields = quizData.split("&")
+
+  for (let i = 1 ; i < quizFields.length+1; i++) {
+    const key = "A" + i.toString() + "c";
+    const value = quizFields[i-1].split("=")[0];
+    data[key] = value;
+  }
+  return data;
+}
+
 module.exports = learnController;
+// A11=on&A21=on&A31=on&A42=on&A51=on

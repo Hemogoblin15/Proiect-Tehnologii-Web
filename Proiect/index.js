@@ -96,6 +96,11 @@ const server = http.createServer((req, res) => {
           learnController.lessonDeleteGet(req, res);
         });
         break;
+      case method === "POST" && url.startsWith("/learn/"):
+          requireAuthentication(req, res, () => {
+            learnController.lessonPost(req, res);
+          });
+          break;  
       case method === "GET" && url.startsWith("/learn/"):
         requireAuthentication(req, res, () => {
           learnController.lessonGet(req, res);
