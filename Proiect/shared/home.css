@@ -61,12 +61,13 @@ html {
 }
 
 .leaderboard-p {
-  flex: 0;
+  position: relative;
   font-size: 35px;
-  border-radius: 20px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
   transform: rotate(15deg);
+  max-width: 10%;
+  height: auto;
 }
 
 .leaderboardContainer {
