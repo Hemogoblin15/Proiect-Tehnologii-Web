@@ -339,6 +339,7 @@ learnController.lessonEditPost = (req, res) => {
       A5c,
     } = parseFormData(body);
     const findLesson = await Lesson.findByURLTag(lessonURL);
+    console.log(findLesson._id);
     await Lesson.editLesson(
       findLesson._id,
       urlTag,
