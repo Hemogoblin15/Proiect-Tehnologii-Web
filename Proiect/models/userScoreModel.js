@@ -44,6 +44,11 @@ class UserScore {
         });
         return score;
     }
+
+    static remove(lessonId) {
+        const db = getDb()
+        db.collection('userScores').deleteMany({ lessonId });
+    }
 }
 
 module.exports = UserScore;

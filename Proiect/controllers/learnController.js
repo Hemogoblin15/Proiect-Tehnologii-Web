@@ -172,8 +172,11 @@ learnController.lessonGet = async (req, res) => {
   }
 };
 
-learnController.lessonDeleteGet = (req, res) => {
+learnController.lessonDeleteGet = async (req, res) => {
   const lessonURL = req.url.split("/")[2];
+  const lesson = await Lesson.findByURLTag(lessonURL);
+  console.log(lesson._id);
+  UserScore.remove(lesson._id);
   Lesson.remove(lessonURL);
   res.statusCode = 302;
   Utils.redirectTo("/learn", res);
